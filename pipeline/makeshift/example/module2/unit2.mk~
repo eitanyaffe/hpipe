@@ -1,2 +1,0 @@
-rule2:
-	@echo module2, unit2, M1_V1=$(M1_V1) M2_V2=$(M2_V2) 

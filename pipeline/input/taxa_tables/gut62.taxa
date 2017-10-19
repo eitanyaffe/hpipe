@@ -1,0 +1,63 @@
+anchor.id	anchor	tax_id	gene_count	identity	level	name	frac	parent.tax.id	is.cag	cag.name	cag.level	coverage
+a1	26	218538	1123	99	species	Dialister invisus	78.64	39948	FALSE	none	none	78.64
+a2	62	487175	2014	99.8	species	Parasutterella excrementihominis	83.67	577310	FALSE	none	none	83.67
+a3	51	853	200	69.087	species	Faecalibacterium prausnitzii	48.31	216851	FALSE	none	none	48.31
+a4	11	853	1021	96.6	species	Faecalibacterium prausnitzii	74.53	216851	FALSE	none	none	74.53
+a5	41	853	959	97.8	species	Faecalibacterium prausnitzii	73.83	216851	FALSE	none	none	73.83
+a6	58	33039	14	49.233	species	[Ruminococcus] torques	1.04	572511	FALSE	none	none	1.04
+a7	61	154288	29	61.9	species	Turicibacter sanguinis	3.08	191303	FALSE	none	none	3.08
+a8	57	357276	3368	100	species	Bacteroides dorei	61.01	816	FALSE	none	none	61.01
+a9	47	246787	615	99.7	species	Bacteroides cellulosilyticus	23.63	816	FALSE	none	none	23.63
+a10	60	246787	3823	99.8	species	Bacteroides cellulosilyticus	78.87	816	FALSE	none	none	78.87
+a11	43	658087	255	73.502	species	Lachnospiraceae bacterium 7_1_58FAA	45.13	186928	FALSE	none	none	45.13
+a12	56	292800	82	64.7	species	Flavonifractor plautii	3.96	946234	FALSE	none	none	3.96
+a13	37	658087	181	72.687	species	Lachnospiraceae bacterium 7_1_58FAA	25	186928	FALSE	none	none	25
+a14	49	658087	138	59.064	species	Lachnospiraceae bacterium 7_1_58FAA	18.47	186928	FALSE	none	none	18.47
+a15	22	853	44	63.179	species	Faecalibacterium prausnitzii	1.58	216851	FALSE	none	none	1.58
+a16	16	214851	94	78.212	species	Subdoligranulum variabile	21.17	292632	FALSE	none	none	21.17
+a17	46	1697794	329	81.511	species	Clostridia bacterium UC5.1-1D1	26.22	348841	FALSE	none	none	26.22
+a18	21	39492	53	64.292	species	[Eubacterium] siraeum	2.67	1508657	FALSE	none	none	2.67
+a19	59	292800	155	61.057	species	Flavonifractor plautii	5.4	946234	FALSE	none	none	5.4
+a20	3	40518	1323	99.46	species	Ruminococcus bromii	61.53	1263	FALSE	none	none	61.53
+a21	10	40519	2202	99.4	species	Ruminococcus callidus	81.83	1263	FALSE	none	none	81.83
+a22	20	39492	113	64.367	species	[Eubacterium] siraeum	3.5	1508657	FALSE	none	none	3.5
+a23	36	39492	2102	99.5	species	[Eubacterium] siraeum	82.56	1508657	FALSE	none	none	82.56
+a24	54	1491	74	50.2	species	Clostridium botulinum	9.92	1485	FALSE	none	none	9.92
+a25	50	261299	1239	100	species	Intestinibacter bartlettii	84.92	1505657	FALSE	none	none	84.92
+a26	52	1505	315	84.4	species	[Clostridium] sordellii	82.03	1481960	FALSE	none	none	82.03
+a27	17	1735	1651	94.6	species	Holdemanella biformis	74.64	1573535	FALSE	none	none	74.64
+a28	38	154046	666	62.62	species	Hungatella hathewayi	21.04	1649459	FALSE	none	none	21.04
+a29	18	39485	739	99.5	species	[Eubacterium] eligens	70.05	1730	FALSE	none	none	70.05
+a30	24	39485	193	93.2	species	[Eubacterium] eligens	7.79	1730	FALSE	none	none	7.79
+a31	40	28052	1452	99.7	species	Lachnospira pectinoschiza	61.97	28050	FALSE	none	none	61.97
+a32	45	1410631	69	65.238	species	Lachnospiraceae bacterium P6B14	3.94	186928	FALSE	none	none	3.94
+a33	33	1410631	53	76.993	species	Lachnospiraceae bacterium P6B14	2.43	186928	FALSE	none	none	2.43
+a34	35	39491	84	71.701	species	Agathobacter rectalis	4.43	1766253	FALSE	none	none	4.43
+a35	8	33039	53	80	species	[Ruminococcus] torques	1.87	572511	FALSE	none	none	1.87
+a36	19	166486	54	70.251	species	Roseburia intestinalis	2.26	841	FALSE	none	none	2.26
+a37	29	66219	73	65.629	species	Lachnoclostridium phytofermentans	3	1506553	FALSE	none	none	3
+a38	39	40520	49	74.6	species	Blautia obeum	1.79	572511	FALSE	none	none	1.79
+a39	12	33043	83	74.714	species	Coprococcus eutactus	3.06	33042	FALSE	none	none	3.06
+a40	15	411489	1968	99.6	species	Clostridium sp. L2-50	87.12	1485	FALSE	none	none	87.12
+a41	23	33043	1991	99.7	species	Coprococcus eutactus	80.28	33042	FALSE	none	none	80.28
+a42	48	39496	416	77.748	species	Eubacterium ventriosum	18.29	1730	FALSE	none	none	18.29
+a43	55	39488	2349	99.8	species	[Eubacterium] hallii	77.81	1730	FALSE	none	none	77.81
+a44	53	1531	93	60.6	species	[Clostridium] clostridioforme	2.74	1506553	FALSE	none	none	2.74
+a45	6	360807	183	68.784	species	Roseburia inulinivorans	7.09	841	FALSE	none	none	7.09
+a46	28	45851	186	68.428	species	Butyrivibrio crossotus	7.28	830	FALSE	none	none	7.28
+a47	2	166486	1062	71.676	species	Roseburia intestinalis	43.88	841	FALSE	none	none	43.88
+a48	25	360807	75	83.486	species	Roseburia inulinivorans	2.93	841	FALSE	none	none	2.93
+a49	30	360807	2626	99.5	species	Roseburia inulinivorans	84.52	841	FALSE	none	none	84.52
+a50	9	166486	2929	100	species	Roseburia intestinalis	83.81	841	FALSE	none	none	83.81
+a51	27	301301	2519	99.5	species	Roseburia hominis	87.92	841	FALSE	none	none	87.92
+a52	1	301302	442	99.8	species	Roseburia faecis	42.34	841	FALSE	none	none	42.34
+a53	5	301302	341	91.807	species	Roseburia faecis	11.67	841	FALSE	none	none	11.67
+a54	13	39491	1779	79.536	species	Agathobacter rectalis	69.57	1766253	FALSE	none	none	69.57
+a55	4	39491	454	99.6	species	Agathobacter rectalis	74.18	1766253	FALSE	none	none	74.18
+a56	14	39491	616	99.6	species	Agathobacter rectalis	72.05	1766253	FALSE	none	none	72.05
+a57	7	88431	2310	99.8	species	Dorea longicatena	82.91	189330	FALSE	none	none	82.91
+a58	32	46228	2036	100	species	Ruminococcus lactaris	82.76	1263	FALSE	none	none	82.76
+a59	34	33039	2074	99.5	species	[Ruminococcus] torques	82.7	572511	FALSE	none	none	82.7
+a60	44	166486	145	65.416	species	Roseburia intestinalis	20.19	841	FALSE	none	none	20.19
+a61	31	1150298	271	99.4	species	Fusicatenibacter saccharivorans	36.09	1407607	FALSE	none	none	36.09
+a62	42	40520	1159	99.6	species	Blautia obeum	77.11	572511	FALSE	none	none	77.11

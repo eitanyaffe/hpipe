@@ -1,0 +1,6 @@
+make.reads=function(ifn, odir)
+{
+    contigs = readLines(ifn)
+    names =
+}
+

@@ -1,0 +1,7 @@
+genebank_id	tax_id	species_tax_id	name	sname	anchors
+GCA_000484655.1	1121115	418240	Blautia wexlerae DSM 19850	strain=DSM 19850	43
+GCA_000424085.1	1280691	418240	Blautia wexlerae AGR2146	strain=AGR2146	43
+GCA_000210555.1	717962	116085	Coprococcus catus GD/7	strain=GD/7	24
+GCA_000146185.1	515620	39485	[Eubacterium] eligens ATCC 27750	strain=ATCC 27750	39
+GCA_000210655.1	718255	166486	Roseburia intestinalis XB6B4	strain=XB6B4	12;20;27;29
+GCA_000444075.1	1292036	1505	[Clostridium] sordellii ATCC 9714	strain=ATCC 9714	56

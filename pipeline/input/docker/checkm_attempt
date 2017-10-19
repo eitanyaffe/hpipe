@@ -1,0 +1,31 @@
+FROM centos:7
+
+# HMMER
+WORKDIR /tools
+RUN wget http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2-linux-intel-x86_64.tar.gz
+RUN tar xvf hmmer-3.1b2-linux-intel-x86_64.tar.gz 
+RUN cp hmmer-3.1b2-linux-intel-x86_64/binaries/* /usr/local/bin
+
+# Prodigal
+RUN git clone https://github.com/hyattpd/Prodigal.git
+RUN cd Prodigal && make install
+
+# PPlacer
+RUN wget https://github.com/matsen/pplacer/releases/download/v1.1.alpha17/pplacer-Linux-v1.1.alpha17.zip
+RUN unzip pplacer-Linux-v1.1.alpha17.zip
+RUN cp pplacer-Linux-v1.1.alpha17/guppy /usr/local/bin
+RUN cp pplacer-Linux-v1.1.alpha17/pplacer /usr/local/bin
+
+# CheckM
+RUN yum install -y numpy
+RUN yum install -y python-pip python-devel
+RUN pip install checkm-genome
+
+# CheckM data
+WORKDIR /tools/checkm_data
+RUN wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_v1.0.7.tar.gz
+RUN tar xvf checkm_data_v1.0.7.tar.gz
+
+# !!! issue is that this command requires user input
+RUN checkm data setRoot /tools/checkm_data
+ENV CHECKM checkm

@@ -1,0 +1,3 @@
+raw_field	field	size	type
+abundance	abundance_bin	20	const
+frag_len	frag_len_bin	20	optimize

@@ -1,0 +1,4 @@
+genebank_id	tax_id	species_tax_id	name	sname	anchors
+GCA_000424085.1	1280691	418240	Blautia wexlerae AGR2146	strain=AGR2146	43
+GCA_000146185.1	515620	39485	[Eubacterium] eligens ATCC 27750	strain=ATCC 27750	39
+GCA_000444075.1	1292036	1505	[Clostridium] sordellii ATCC 9714	strain=ATCC 9714	56

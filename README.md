@@ -1,4 +1,4 @@
-# hpipe
+# hpipe: Microbial genome unions from Hi-C maps
 
 This pipeline processes Hi-C maps to infer genome anchors and unions.
 

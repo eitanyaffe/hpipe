@@ -1,0 +1,104 @@
+plot.elements.internal=function(labels, fdir, lid, rep.table, element.table, anchor.table, obs, exp, min.score, disturb.ids, network)
+{
+    elements = sort(unique(network$cluster))
+    N = dim(obs)[2] - 1
+    coords = 1:N
+    ylim = c(-2, 1.5)
+    system(paste("rm -rf", fdir))
+
+    dindex = which(is.element(colnames(obs)[-1], disturb.ids))
+    drange = c(min(dindex)-1, max(dindex))
+
+    # separate files
+    for (element in elements) {
+        inetwork = network[network$cluster == element,]
+        M = dim(inetwork)[1]
+        colors = colorpanel(M, "orange", "purple")
+        anchors = inetwork$anchor
+        anchors = anchors[order(match(anchors,anchor.table$set))]
+
+        major.obs = obs[match(anchors, obs$cluster), -1]
+        major.exp = exp[match(anchors, exp$cluster), -1]
+        major.norm = log10(major.obs/major.exp)
+        major.norm[major.norm<min.score] = min.score
+        major.norm.sum = log10(colSums(ifelse(major.norm>min.score,10^major.norm,0)))
+        major.norm.sum[major.norm.sum<min.score] = min.score
+
+        element.obs = unlist(obs[element == obs$cluster, -1])
+        element.exp = unlist(exp[element == exp$cluster, -1])
+        element.norm = log10(element.obs/element.exp)
+        element.norm[element.norm<min.score] = min.score
+
+        # confidence interval
+        element.sqrt = sqrt(element.obs)
+        element.high = element.obs+element.sqrt
+        element.low = element.obs-element.sqrt
+        element.low = ifelse(element.low < 0, 0, element.low)
+        high = log10(element.high/element.exp)
+        low = log10(element.low/element.exp)
+        high[high<min.score] = min.score
+        low[low<min.score] = min.score
+
+        element.id = element.table$id[match(element, element.table$cluster)]
+        anchor.ids = anchor.table$id[match(anchors, anchor.table$set)]
+        main = paste("element=", element.id, sep="")
+
+        fig.start(fdir=fdir, ofn=paste(fdir, "/", element.id, ".pdf", sep=""), type="pdf", height=3, width=8)
+
+        layout(matrix(1:2, 1, 2), widths=c(1,1.3))
+        par(mai=c(0.6,0.6,0.4,0))
+        plot.init(xlim=c(1,N), ylim=ylim, main=main, x.axis=F, y.axis=F)
+        abline(h=0)
+        at = drange+0.5
+        abline(v=at, lwd=2, lty=2)
+        if (M>1)
+            lines(x=coords, y=major.norm.sum, col="lightgray", lwd=3)
+        for (i in 1:M)
+            lines(x=coords, y=major.norm[i,], col=colors[i], lwd=1)
+
+        polygon(x=c(coords,rev(coords)), y=c(high, rev(low)), col="gray", border=NA)
+        lines(x=coords, y=element.norm, lwd=3)
+        axis(side=1, labels=labels, at=1:N, las=2, cex.axis=0.75)
+        axis(side=2, las=2)
+
+        names = paste(rep.table$anchor.id[match(anchors, rep.table$anchor)], ": ", rep.table$name[match(anchors, rep.table$anchor)], sep="")
+        par(mai=c(0,0,0,0))
+        plot.new()
+        plot.window(0:1, 0:1)
+        legend(x=0, y=0.95, fill=colors, legend=names, border=NA, bty="n")
+
+        fig.end()
+
+        # wlegend(fdir, names=anchor.ids, cols=1:M+1, title="anchor_colors", ofn.prefix=element.id, width=600, make.file=T, border=NA)
+
+    }
+
+}
+
+plot.elements=function(lid, ifn.reps, ifn.anchors, ifn.elements, ifn.network, ifn.obs, ifn.exp, ifn.detection, labels, disturb.ids, fdir)
+{
+    rep.table = load.table(ifn.reps)
+    element.table = load.table(ifn.elements)
+    anchor.table = load.table(ifn.anchors)
+    obs = load.table(ifn.obs)
+    exp = load.table(ifn.exp)
+    min.score = log10(load.table(ifn.detection)[1,1])
+    network = load.table(ifn.network)
+
+    plot.elements.internal(labels=labels, fdir=fdir, lid=lid, rep.table=rep.table, disturb.ids=disturb.ids,
+                           element.table=element.table, anchor.table=anchor.table, obs=obs, exp=exp, min.score=min.score, network=network)
+}
+
+plot.elements.compare=function(lid, ifn.reps, ifn.anchors, ifn.elements, ifn.map, ifn.obs, ifn.exp, ifn.detection, labels, disturb.ids, fdir)
+{
+    rep.table = load.table(ifn.reps)
+    element.table = load.table(ifn.elements)
+    anchor.table = load.table(ifn.anchors)
+    obs = load.table(ifn.obs)
+    exp = load.table(ifn.exp)
+    min.score = log10(load.table(ifn.detection)[1,1])
+    network = load.table(ifn.map)
+
+    plot.elements.internal(labels=labels, fdir=fdir, lid=lid, rep.table=rep.table, disturb.ids=disturb.ids,
+                           element.table=element.table, anchor.table=anchor.table, obs=obs, exp=exp, min.score=min.score, network=network)
+}

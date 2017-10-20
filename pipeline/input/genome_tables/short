@@ -1,0 +1,5 @@
+base.taxid	taxid	accession	name	assembly_level	release	excluded	ftp.path
+39491	39491	GCA_001404855.1	[Eubacterium] rectale	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/404/855/GCA_001404855.1_13414_6_44
+301302	301302	GCA_001405615.1	Roseburia faecis	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/615/GCA_001405615.1_13414_6_47
+360807	360807	GCA_001405535.1	Roseburia inulinivorans	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/535/GCA_001405535.1_13414_6_71
+39496	411463	GCA_000153885.1	Eubacterium ventriosum ATCC 27560	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/153/885/GCA_000153885.1_ASM15388v1

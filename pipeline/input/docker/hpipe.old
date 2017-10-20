@@ -1,0 +1,81 @@
+FROM centos:7
+
+# R
+RUN \
+  yum update -y && \
+  yum upgrade -y && \
+  yum install -y epel-release && \
+  yum install -y R
+
+# for '/usr/bin/time'
+RUN yum install -y ftp://195.220.108.108/linux/centos/7.4.1708/os/x86_64/Packages/time-1.7-45.el7.x86_64.rpm
+RUN yum install -y wget && yum install -y bwa
+
+# Set the working directory
+ENV HPIPE_WD /hpipe
+WORKDIR $HPIPE_WD
+
+# R packages
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > $HPIPE_WD/.Rprofile
+RUN Rscript -e "install.packages(c('gplots', 'R.utils', 'igraph', 'mixLik', 'fastcluster'))"
+
+# tools
+RUN mkdir /download
+RUN yum install -y git
+
+# SeqPrep
+RUN git clone https://github.com/jstjohn/SeqPrep.git /tools/SeqPrep && make -C /tools/SeqPrep
+ENV SEQPREP /tools/SeqPrep/SeqPrep
+
+# sickle
+RUN git clone https://github.com/najoshi/sickle.git /tools/sickle && make -C /tools/sickle
+ENV SICKLE /tools/sickle/sickle
+
+# misc
+RUN yum install -y parallel && echo 'will cite' | parallel --bibtex
+RUN chmod a+rwx /home
+RUN yum -y install emacs-nox
+
+# RUN echo "mkdir -p \$HOME/.parallel && touch \$HOME/.parallel/will-site" > /etc/profile.d/parallel_site.sh
+
+# perl installation
+RUN yum install -y perl-CPAN
+RUN yum install -y perl-Compress-Raw-Zlib
+RUN curl -L http://cpanmin.us | perl - App::cpanminus
+RUN cpanm Digest::MD5
+
+######################################################################################################
+# deconseq
+######################################################################################################
+
+WORKDIR /download
+ENV PRINSEQ /download/prinseq-lite-0.20.4/prinseq-lite.pl
+RUN wget https://sourceforge.net/projects/prinseq/files/standalone/prinseq-lite-0.20.4.tar.gz
+RUN tar xvf prinseq-lite-0.20.4.tar.gz
+
+ENV DECONSEQ_DIR /tools/deconseq
+RUN mkdir -p ${DECONSEQ_DIR}
+WORKDIR ${DECONSEQ_DIR}
+RUN wget https://sourceforge.net/projects/deconseq/files/standalone/deconseq-standalone-0.4.3.tar.gz && tar xvf deconseq-standalone-0.4.3.tar.gz
+
+ENV HUMAN_BUILD GRCh38.p7
+RUN for i in {1..22} X Y MT; do wget ftp://ftp.ncbi.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/hs_ref_${HUMAN_BUILD}_chr$i.fa.gz; done
+RUN for i in {1..22} X Y MT; do gzip -dvc hs_ref_${HUMAN_BUILD}_chr$i.fa.gz >>hs_ref.fa; done
+RUN cat hs_ref.fa | perl -p -e 's/N\n/N/' | perl -p -e 's/^N+//;s/N+$//;s/N{200,}/\n>split\n/' >hs_ref_split.fa 
+RUN rm hs_ref.fa hs_ref_${HUMAN_BUILD}_chr*.fa.gz
+
+RUN perl $PRINSEQ -log -verbose -fasta hs_ref_split.fa -min_len 200 -ns_max_p 10 -derep 12345 -out_good hs_ref_split_prinseq -seq_id hs_ref_ -rm_header -out_bad null
+
+ENV DECONSEQ_BWA /tools/deconseq/deconseq-standalone-0.4.3/bwa64
+RUN rm hs_ref_split.fa
+chmod a+x ${DECONSEQ_BWA}
+RUN ${DECONSEQ_BWA} index -p hsref -a bwtsw hs_ref_split_prinseq.fasta
+RUN rm hs_ref_split_prinseq.fasta
+
+WORKDIR /hpipe
+
+#COPY md $HPIPE_WD/
+#COPY input $HPIPE_WD/
+#COPY makeshift $HPIPE_WD/
+#COPY makefile $HPIPE_WD/
+#COPY global.mk $HPIPE_WD/

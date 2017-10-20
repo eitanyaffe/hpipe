@@ -1,0 +1,27 @@
+
+
+SET_CLUSTER_BLAST_RAW?=$(SET_CLUSTER_DIR)/raw
+SET_CLUSTER_BLAST?=$(SET_CLUSTER_DIR)/parsed
+
+SET_SELF_BLAST_DONE?=$(SET_CLUSTER_DIR)/.done_self_blast
+$(SET_SELF_BLAST_DONE):
+	$(call _start,$(SET_CLUSTER_DIR))
+	$(_md)/pl/usearch_blast.pl \
+		$(USEARCH_BIN) \
+		$(SET_FASTA) \
+		$(SET_FASTA) \
+		$(SET_DB_INDEX) \
+		$(NTHREADS) \
+		$(SELF_BLAST_EVALUE) \
+		$(SET_CLUSTER_BLAST_RAW)
+	$(_end_touch)
+
+SET_SELF_PARSE_DONE?=$(SET_CLUSTER_DIR)/.done_parse
+$(SET_SELF_PARSE_DONE): $(SET_SELF_BLAST_DONE)
+	perl $(_md)/pl/usearch_parse.pl \
+		$(SET_CLUSTER_BLAST_RAW) \
+		$(SET_TABLE) \
+		$(SET_TABLE) \
+		T T \
+		$(SET_CLUSTER_BLAST)
+	$(_end_touch)

@@ -1,0 +1,16 @@
+gene.stats=function(ifn.genes, ifn.uniref, poor.annotation.desc, ofn)
+{
+    uniref = load.table(ifn.uniref)
+    gene = load.table(ifn.genes)
+    for (i in 1:length(poor.annotation.desc))
+        poor.annotation.desc[i] = sub("_", " ", poor.annotation.desc[i])
+    gene = lookup.append(table=gene, lookup.table=uniref, lookup.field="gene", value.field="uniref", omit.na=F)
+    gene = lookup.append(table=gene, lookup.table=uniref, lookup.field="gene", value.field="identity", omit.na=F)
+    gene = lookup.append(table=gene, lookup.table=uniref, lookup.field="gene", value.field="prot_desc", omit.na=F)
+    gene = lookup.append(table=gene, lookup.table=uniref, lookup.field="gene", value.field="tax", omit.na=F)
+    gene$prot_desc = tolower(gene$prot_desc)
+    poor.annotation.desc = tolower(poor.annotation.desc)
+    identity.below.70 = sum(!is.na(gene$identity) & gene$identity < 70)
+    df = data.frame(total=dim(gene)[1], no.uniref=sum(is.na(gene$uniref)), poor.annotation=sum(is.element(gene$prot_desc, poor.annotation.desc)), identity.below.70=identity.below.70)
+    save.table(df, ofn)
+}

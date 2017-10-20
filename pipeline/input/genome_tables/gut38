@@ -1,0 +1,39 @@
+base.taxid	taxid	accession	name	assembly_level	release	excluded	ftp.path
+853	853	GCA_001406615.1	Faecalibacterium prausnitzii	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/406/615/GCA_001406615.1_14207_7_53
+1491	1407017	GCA_000503815.1	Clostridium botulinum B str. Osaka05	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/503/815/GCA_000503815.1_ASM50381v1
+1505	1505	GCA_001372735.1	Paeniclostridium sordellii	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/372/735/GCA_001372735.1_DA108
+1531	999407	GCA_000371525.1	[Clostridium] clostridioforme 90A7	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/371/525/GCA_000371525.1_Clos_clos_90A7_V1
+1735	518637	GCA_000156655.1	Holdemanella biformis DSM 3989	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/156/655/GCA_000156655.1_ASM15665v1
+28052	28052	GCA_001405835.1	Lachnospira pectinoschiza	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/835/GCA_001405835.1_13470_2_55
+33039	657313	GCA_000210035.1	Ruminococcus torques L2-14	Chromosome	Major	missing rRNA genes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/210/035/GCA_000210035.1_ASM21003v1
+33043	33043	GCA_001406175.1	Coprococcus eutactus	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/406/175/GCA_001406175.1_13414_6_27
+39485	39485	GCA_001916465.1	[Eubacterium] eligens	Scaffold	Major	derived from metagenome	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/916/465/GCA_001916465.1_ASM191646v1
+39488	39488	GCA_001406155.1	[Eubacterium] hallii	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/406/155/GCA_001406155.1_14207_7_89
+39491	39491	GCA_001404855.1	[Eubacterium] rectale	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/404/855/GCA_001404855.1_13414_6_44
+39492	39492	GCA_001404415.1	[Eubacterium] siraeum	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/404/415/GCA_001404415.1_14207_7_51
+39496	411463	GCA_000153885.1	Eubacterium ventriosum ATCC 27560	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/153/885/GCA_000153885.1_ASM15388v1
+40518	40518	GCA_900101355.1	Ruminococcus bromii	Contig	Major	partial	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/101/355/GCA_900101355.1_IMG-taxon_2593339225_annotated_assembly
+40519	411473	GCA_000468015.1	Ruminococcus callidus ATCC 27760	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/468/015/GCA_000468015.1_ASM46801v1
+40520	40520	GCA_001405455.1	Blautia obeum	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/455/GCA_001405455.1_13470_2_80
+45851	45851	GCA_001915735.1	Butyrivibrio crossotus	Scaffold	Major	derived from metagenome	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/915/735/GCA_001915735.1_ASM191573v1
+46228	471875	GCA_000155205.1	Ruminococcus lactaris ATCC 29176	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/155/205/GCA_000155205.1_ASM15520v1
+66219	66219	GCA_000733755.1	Lachnoclostridium phytofermentans	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/733/755/GCA_000733755.1_ASM73375v1
+88431	88431	GCA_001405975.1	Dorea longicatena	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/975/GCA_001405975.1_14207_7_84
+154046	566550	GCA_000160095.1	Hungatella hathewayi DSM 13479	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/160/095/GCA_000160095.1_ASM16009v1
+154288	154288	GCA_001405075.1	Turicibacter sanguinis	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/075/GCA_001405075.1_13414_6_49
+166486	657315	GCA_000209995.1	Roseburia intestinalis M50/1	Chromosome	Major	missing rRNA genes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/209/995/GCA_000209995.1_ASM20999v1
+214851	411471	GCA_000157955.1	Subdoligranulum variabile DSM 15176	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/157/955/GCA_000157955.1_ASM15795v1
+218538	592028	GCA_000160055.1	Dialister invisus DSM 15470	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/160/055/GCA_000160055.1_ASM16005v1
+246787	997874	GCA_000273015.1	Bacteroides cellulosilyticus CL02T12C19	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/273/015/GCA_000273015.1_Bact_cell_CL02T12C19_V1
+261299	261299	GCA_001406775.1	Intestinibacter bartlettii	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/406/775/GCA_001406775.1_14207_7_2
+292800	411475	GCA_000239295.1	Flavonifractor plautii ATCC 29863	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/239/295/GCA_000239295.1_ASM23929v1
+301301	301301	GCA_001405875.1	Roseburia hominis	Contig	Major	contaminated	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/875/GCA_001405875.1_13414_6_18
+301302	301302	GCA_001405615.1	Roseburia faecis	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/615/GCA_001405615.1_13414_6_47
+357276	357276	GCA_001274835.1	Bacteroides dorei	Complete Genome	Major	derived from environmental source	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/274/835/GCA_001274835.1_ASM127483v1
+360807	360807	GCA_001405535.1	Roseburia inulinivorans	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/405/535/GCA_001405535.1_13414_6_71
+411489	411489	GCA_000154245.1	Clostridium sp. L2-50	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/154/245/GCA_000154245.1_ASM15424v1
+487175	762966	GCA_000205025.1	Parasutterella excrementihominis YIT 11859	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/205/025/GCA_000205025.1_ASM20502v1
+658087	658087	GCA_000242155.1	Lachnospiraceae bacterium 7_1_58FAA	Scaffold	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/242/155/GCA_000242155.1_Lach_bact_7_1_58FAA_V1
+1150298	1150298	GCA_001404555.1	Fusicatenibacter saccharivorans	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/404/555/GCA_001404555.1_14207_7_46
+1410631	1410631	GCA_000687695.1	Lachnospiraceae bacterium P6B14	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/687/695/GCA_000687695.1_ASM68769v1
+1697794	1697794	GCA_001305135.1	Clostridia bacterium UC5.1-1D1	Contig	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/305/135/GCA_001305135.1_ASM130513v1

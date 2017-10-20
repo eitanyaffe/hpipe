@@ -1,0 +1,53 @@
+accession	taxid	organism_name	infraspecific_name	assembly_level
+GCA_000965785.1	817	Bacteroides fragilis	strain=BOB25	Complete Genome
+GCA_001314975.1	818	Bacteroides thetaiotaomicron	strain=7330	Complete Genome
+GCA_000939155.1	820	Bacteroides uniformis	strain=2a7B	Contig
+GCA_001412315.1	821	Bacteroides vulgatus	strain=mpk	Chromosome
+GCA_000953275.1	1496	Clostridioides difficile	strain=630Derm	Complete Genome
+GCA_000953555.1	1505	Paeniclostridium sordellii	strain=JGS6382	Chromosome
+GCA_001314995.1	28116	Bacteroides ovatus	strain=ATCC 8483	Complete Genome
+GCA_001404455.1	40520	Blautia obeum	strain=2789STDY5608838	Contig
+GCA_001404575.1	46503	Parabacteroides merdae	strain=2789STDY5834848	Contig
+GCA_001535605.1	46506	Bacteroides stercoris	strain=CL09T03C01	Scaffold
+GCA_001405515.1	47678	Bacteroides caccae	strain=2789STDY5834946	Contig
+GCA_001318345.1	246787	Bacteroides cellulosilyticus	strain=WH2	Complete Genome
+GCA_001405695.1	291644	Bacteroides salyersiae	strain=2789STDY5608871	Contig
+GCA_001915535.1	310297	Bacteroides plebeius		Scaffold
+GCA_001039445.1	328812	Parabacteroides goldsteinii	strain=910340	Contig
+GCA_000940235.1	329854	Bacteroides intestinalis	strain=2e7A	Contig
+GCA_001404475.1	338188	Bacteroides finegoldii	strain=2789STDY5608840	Contig
+GCA_000738045.1	357276	Bacteroides dorei		Complete Genome
+GCA_001405055.1	371601	Bacteroides xylanisolvens	strain=2789STDY5608839	Contig
+GCA_001404735.1	418240	Blautia wexlerae	strain=2789STDY5834911	Contig
+GCA_000218365.1	457387	Bacteroides sp. 1_1_30	strain=1_1_30	Scaffold
+GCA_001185845.1	457389	Bacteroides sp. 3_1_13	strain=3_1_13	Scaffold
+GCA_000162555.1	457390	Bacteroides sp. 3_1_23	strain=3_1_23	Scaffold
+GCA_000162195.1	457391	Bacteroides sp. 3_1_33FAA	strain=3_1_33FAA	Scaffold
+GCA_000185585.1	457393	Bacteroides sp. 4_1_36	strain=4_1_36	Scaffold
+GCA_000158515.2	457394	Bacteroides sp. 4_3_47FAA	strain=4_3_47FAA	Scaffold
+GCA_000157075.2	457395	Bacteroides sp. 9_1_42FAA	strain=9_1_42FAA	Scaffold
+GCA_000159975.2	457412	Ruminococcus sp. 5_1_39BFAA	strain=5_1_39BFAA	Contig
+GCA_000162515.1	469585	Bacteroides sp. 1_1_14	strain=1_1_14	Scaffold
+GCA_000159875.2	469586	Bacteroides sp. 1_1_6	strain=1_1_6	Scaffold
+GCA_000162135.1	469587	Bacteroides sp. 2_1_16	strain=2_1_16	Scaffold
+GCA_000162155.1	469588	Bacteroides sp. 2_1_22	strain=2_1_22	Scaffold
+GCA_000157055.1	469590	Bacteroides sp. 2_2_4	strain=2_2_4	Scaffold
+GCA_000163655.1	469592	Bacteroides sp. 3_1_19	strain=3_1_19	Scaffold
+GCA_000186105.1	469593	Bacteroides sp. 3_1_40A	strain=3_1_40A	Scaffold
+GCA_000157095.2	556258	Bacteroides sp. D1	strain=D1	Scaffold
+GCA_000159075.2	556259	Bacteroides sp. D2	strain=D2	Scaffold
+GCA_000162275.1	563193	Parabacteroides sp. D13	strain=D13	Scaffold
+GCA_000162215.1	585543	Bacteroides sp. D20	strain=D20	Scaffold
+GCA_000163675.1	585544	Bacteroides sp. D22	strain=D22	Scaffold
+GCA_001915515.1	626931	Bacteroides oleiciplenus		Scaffold
+GCA_000209835.1	657323	Ruminococcus sp. SR1/5	strain=SR1/5	Chromosome
+GCA_000307475.1	658661	Parabacteroides sp. D25	strain=D25	Scaffold
+GCA_000218345.1	665938	Bacteroides sp. 2_1_56FAA	strain=2_1_56FAA	Scaffold
+GCA_000294405.1	749906	gut metagenome		Contig
+GCA_900142015.1	871324	Bacteroides stercorirosoris	strain=DSM 26884	Contig
+GCA_000270305.1	1042156	Clostridium sp. SY8519	strain=SY8519	Complete Genome
+GCA_000382465.1	1078089	Bacteroides sp. HPS0048	strain=HPS0048	Scaffold
+GCA_000285855.2	1095771	Ruminococcus sp. JC304		Scaffold
+GCA_000526555.1	1163670	Bacteroides sp. 14(A)	strain=14(A)	Contig
+GCA_000466565.1	1226324	Blautia sp. KLE 1732	strain=KLE 1732	Scaffold
+GCA_001305175.1	1697796	Bacteroidia bacterium UC5.1-2G11	strain=UC5.1-2G11	Contig

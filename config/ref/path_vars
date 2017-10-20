@@ -3,8 +3,8 @@ GENE_REF_BASEDIR=/relman01/shared/databases/UniRef100/2015_12
 GENEBANK_DIR=/relman01/shared/databases/NCBI/Genomes/Feb_2017
 
 # project paths
-BASE_OUTDIR=/relman04/users/eitany/bcc
-BASE_TMPDIR=/relman04/users/eitany/bcc_tmp
+BASE_OUTDIR=/relman04/users/eitany/hpipe_test
+BASE_TMPDIR=/relman04/users/eitany/hpipe_test_tmp
 
 # pipeline for human read removal
 DECONSEQ_DIR=/relman01/shared/tools/deconseq-standalone-0.4.3/

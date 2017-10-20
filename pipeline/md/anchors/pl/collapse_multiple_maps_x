@@ -1,0 +1,118 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings FATAL => qw(all);
+use List::Util;
+
+if ($#ARGV == -1) {
+	print STDERR "usage: $0 <function min|mean|max> <ofn> <map_ifn1, map_ifn...>\n";
+	exit 1;
+}
+
+my ($function, $ofn) = @ARGV[1..2];
+shift; shift;
+my @ifns = @ARGV;
+
+###################################################################################################################
+# go over map
+###################################################################################################################
+
+our %gmap;
+foreach my $ifn (@ifns) {
+    read_map($ifn, "gene", "target");
+}
+
+###################################################################################################################
+# output graph
+###################################################################################################################
+
+print STDERR "generating output graph: $ofn\n";
+open(OUT, ">", $ofn) || die;
+print OUT "gene1\tgene2\tidentity\tcoverage\tcount\n";
+
+foreach my $gene1 (keys %gmap) {
+    foreach my $gene2 (keys %{$gmap{$gene1}}) {
+	next if ($gene1 eq $gene2);
+
+	my ($identity_v, $coverage_v, $count, $first) = (0,0,0,1);
+	foreach my $key (keys %{$gmap{$gene1}->{$gene2}}) {
+	    $count++;
+	    my $tidentity = $gmap{$gene1}->{$gene2}->{$key}->{identity};
+	    my $tcoverage = $gmap{$gene1}->{$gene2}->{$key}->{coverage};
+	    if ($function eq "min") {
+		$identity_v = $first ? $tidentity : ($tidentity < $identity_v ? $tidentity : $identity_v);
+		$coverage_v = $first ? $tcoverage : ($tcoverage < $coverage_v ? $tcoverage : $coverage_v);
+	    } elsif ($function eq "max") {
+		$identity_v = $first ? $tidentity : ($tidentity > $identity_v ? $tidentity : $identity_v);
+		$coverage_v = $first ? $tcoverage : ($tcoverage > $coverage_v ? $tcoverage : $coverage_v);
+	    }  elsif ($function eq "mean") {
+		$identity_v += $tidentity;
+		$coverage_v += $tcoverage;
+	    } else {
+		die "unknown collapse function: $function";
+	    }
+
+	}
+	if ($function eq "mean") {
+	    $identity_v = $identity_v / $count;
+	    $coverage_v = $coverage_v / $count;
+	}
+	print OUT "$gene1\t$gene2\t$identity_v\t$coverage_v\t$count\n";
+    }
+}
+close(OUT);
+
+#######################################################################################
+# utils
+#######################################################################################
+
+sub apprx_lines
+{
+	my ($fn) = @_;
+	my $tmp = "/tmp/".$$."_apprx_lines.tmp";
+	system("head -n 100000 $fn > $tmp");
+	my $size_head = -s $tmp;
+	my $size_all = -s $fn;
+	return (int($size_all/$size_head*100000));
+}
+
+sub parse_header
+{
+	my ($header) = @_;
+	chomp($header);
+	my @f = split("\t", $header);
+	my %result;
+	for (my $i = 0; $i <= $#f; $i++) {
+		$result{$f[$i]} = $i;
+	}
+	return %result;
+}
+
+sub read_map
+{
+    my ($ifn, $field1, $field2) = @_;
+    print STDERR "reading map: $ifn\n";
+    open(IN, $ifn) || die;
+    my $header = <IN>;
+    my %h = parse_header($header);
+    while (my $line = <IN>) {
+	chomp($line);
+	my @f = split("\t", $line);
+	my $identity = $f[$h{identity}];
+	my $coverage = $f[$h{coverage}];
+	my $gene1 = $f[$h{$field1}];
+	my $gene2 = $f[$h{$field2}];
+
+	$gmap{$gene1} = {} if (!defined($gmap{$gene1}));
+	$gmap{$gene1}->{$gene2} = {} if (!defined($gmap{$gene1}->{$gene2}));
+
+	my $key = $gene1."_".$gene2;
+	next if (defined($gmap{$gene1}->{$gene2}->{$key}) && $gmap{$gene1}->{$gene2}->{$key}->{coverage} < $evalue);
+
+	$gmap{$gene1}->{$gene2}->{$key} = {};
+	$gmap{$gene1}->{$gene2}->{$key}->{coverage} = $coverage;
+	$gmap{$gene1}->{$gene2}->{$key}->{identity} = $identity;
+    }
+    close(IN);
+}
+

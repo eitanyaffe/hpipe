@@ -1,0 +1,78 @@
+taxa.resolve=function(ifn.order, ifn.tree, ifn.path, ifn.taxa, min.coverage, min.ratio, ofn)
+{
+    anchor.table = load.table(ifn.order)
+    table = load.table(ifn.tree)
+    path = load.table(ifn.path)
+
+    root.id = 1
+    cat(sprintf("reading tax table: %s\n", ifn.taxa))
+    taxa = read.delim(ifn.taxa, quote="")
+    taxa$level = ifelse(taxa$level == "no rank" & taxa$level[match(taxa$parent_id, taxa$tax_id)] == "species", "subspecies", taxa$level)
+    taxa$level[is.na(taxa$level)] = "root"
+    nodes = tree.node(id=taxa$tax_id, root.id=root.id, parent.id=taxa$parent_id, name=taxa$name, level=taxa$level)
+
+    table$level = taxa$level[match(table$tax_id, taxa$tax_id)]
+    table$name = taxa$name[match(table$tax_id, taxa$tax_id)]
+
+    get.data=function(anchor.id, level, tpath) {
+        ix = tpath$level == level
+        if (!any(ix))
+            return (NULL)
+        tax.id = tpath$tax_id[ix]
+        name = tpath$name[ix]
+        list(tax.id=tax.id, name=name, level=level)
+    }
+
+    ids = anchor.table$id
+    result = NULL
+    for (anchor.id in ids) {
+        anchor = anchor.table$set[match(anchor.id, anchor.table$id)]
+        atable = table[table$anchor == anchor,]
+        anodes = nodes[is.element(nodes$id, atable$tax_id),]
+        gene.total = atable$gene_count[match(root.id, atable$tax_id)]
+        atable$coverage = 100 * atable$gene_count / gene.total
+        anodes$coverage = atable$coverage[match(anodes$id, atable$tax_id)]
+        atree = make.tree(anodes)
+        apath = path[path$anchor.id == anchor.id,]
+
+        mid.path = F
+        type = "ok"
+        for (path.i in dim(apath)[1]:2) {
+            current.id = apath$tax_id[path.i]
+            next.id = apath$tax_id[path.i-1]
+            cids = get.children(atree, current.id)
+            cnodes = anodes[is.element(anodes$id, cids),]
+            cnodes = cnodes[order(cnodes$coverage, decreasing=T),]
+            children.count = dim(cnodes)[1]
+            if (children.count == 1)
+                next
+            if (match(next.id, cnodes$id) != 1) {
+                type = "not.first"
+                mid.path = T
+                break
+            }
+            if (cnodes$coverage[1] < min.coverage) {
+                type = "low.coverage"
+                mid.path = T
+                break
+            }
+            aratio = 100 * cnodes$coverage[1] / cnodes$coverage[2]
+            if (aratio < min.ratio) {
+                type = "low.ratio"
+                mid.path = T
+                break
+            }
+        }
+        if (mid.path) {
+            rid = current.id
+        } else {
+            rid = next.id
+            children.count = 0
+        }
+        ix = match(rid, apath$tax_id)
+        df = data.frame(anchor.id=anchor.id, anchor=anchor, tax_id=rid, name=apath$name[ix], level=apath$level[ix],
+            mid.path=mid.path, type=type, children.count=children.count)
+        result = rbind(result, df)
+    }
+    save.table(result, ofn)
+}

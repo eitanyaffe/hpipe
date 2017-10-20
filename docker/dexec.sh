@@ -3,8 +3,15 @@ if [[ $# -eq 0 ]] ; then
     exit 0
 fi
 
+array=("$@")
 CFG_DIR=$1
-COMMAND=$2
+
+for((i=0;i<${#array[@]};i++))
+do
+    if [[ $i == 0 ]]; then continue; fi
+#    echo "$i: ${array[$i]}"
+    COMMAND="$COMMAND ${array[$i]}"
+done
 
 # add current dir if not absolute
 if [ ${CFG_DIR:0:1} != "/" ]; then

@@ -1,0 +1,104 @@
+plot.anchor.majors=function(ifn, fdir)
+{
+    x = load.table(ifn)
+    fig.start(fdir=fdir, ofn=paste(fdir, "/anchor_majors.png", sep=""), width=800)
+    barplot(100*x$anchor.f, names.arg=x$anchor, las=2)
+    title(main=paste("median=", median(100*x$anchor.f), sep=""))
+    fig.end()
+}
+
+plot.hclust=function(ifn, ifn.ca, threshold, fdir)
+{
+    library("fastcluster")
+    debug = F
+    lwd = 1
+
+    ca = load.table(ifn.ca)
+    ca = ca[,c("contig", "anchor")]
+    if (debug) ca = ca[ca$anchor==7 | ca$anchor==13,]
+
+    cmap = field.count(ca, "contig")
+    cmap$anchor = ifelse(cmap$count == 1, ca$anchor[match(cmap$contig, ca$contig)], 0)
+
+    table = load.table(ifn)
+    rownames(table) = table$contig
+    table = table[is.element(table$contig, ca$contig),]
+    # if (debug) table = table[1:200,]
+
+    contigs = table$contig
+    N = length(contigs)
+
+    anchors = c(0, sort(unique(ca$anchor)))
+    M = length(anchors)
+
+
+    cat(sprintf("computing pearson over contigs: %d\n", length(contigs)))
+    cc = cor(t(table[,-1]))
+    cc[is.na(cc) | !is.finite(cc)] = -1
+
+    cat(sprintf("computing hclust...\n"))
+    dd = as.dist(1 - cc)
+    hh = fastcluster::hclust(dd, method="average")
+
+    cluster.table = cluster.anchor.contigs(hh, contigs, cmap, threshold)
+
+    df = data.frame(
+        contig=contigs,
+        anchor=cmap$anchor[match(contigs, cmap$contig)],
+        cluster=cluster.table$cluster[match(contigs, cluster.table$contig)])
+    df = df[hh$order,]
+    df$index = 1:N
+
+    cluster.borders = c(which(diff(c(-10, df$cluster))!=0),N+1) - 0.5
+    anchor.borders = c(which(diff(c(-10, df$anchor))!=0),N)
+
+    clusters = sort(unique(df$cluster))
+    anchor.colors = c("white", rainbow(length(anchors)))
+    df$anchor.color = anchor.colors[match(df$anchor, anchors)]
+
+    axis.df = NULL
+    for (anchor in anchors) {
+        if (anchor == 0)
+            next
+        aclusters = df$cluster[df$anchor == anchor]
+        aclusters = aclusters[aclusters != 0]
+        if (length(aclusters) == 0)
+            next
+        mcluster = as.numeric(names(sort(table(aclusters), decreasing=T))[1])
+        median.index = median(df$index[df$cluster == mcluster])
+        min.index = min(df$index[df$cluster == mcluster])
+        max.index = max(df$index[df$cluster == mcluster])
+        axis.df = rbind(axis.df, data.frame(anchor=anchor, cluster=mcluster, start=min.index, end=max.index, center=median.index))
+    }
+
+    dg = as.dendrogram(hh)
+
+    if (!debug) fig.start(fdir=fdir, ofn=paste(fdir, "/cluster_threshold_", threshold, ".png", sep=""), height=800, width=8000)
+    plot(dg, yaxt="n", center=F, ylim=c(-0.2,attr(dg, "height")), leaflab="none")
+    at = round(seq(0, attr(dg, "height"), by=0.1),2)
+    axis(side=2, at=at, labels=1-at, las=2)
+    segments(x0=df$index, x1=df$index, y0=-0.05, y1=-0.01, col=df$anchor.color, lwd=lwd)
+    rect(xleft=axis.df$start, xright=axis.df$end, ybottom=-0.06,  ytop=-0.05, col=1)
+    segments(x0=cluster.borders, x1=cluster.borders, y0=-0.05, y1=-0.01, col="gray")
+    # segments(x0=anchor.borders, x1=anchor.borders, y0=-0.1, y1=-0.05, col="gray", lwd=lwd)
+    text(x=axis.df$center, y=-0.05, labels=axis.df$anchor, pos=1, offset=0.7, srt=90, cex=0.8)
+    title(main=paste("threshold rho=", threshold, sep=""))
+    if (!debug) fig.end()
+
+    fig.start(fdir=fdir, ofn=paste(fdir, "/cluster_threshold_", threshold, "legend.png", sep=""), width=M*15+200, height=200)
+    plot.init(ylim=c(-1,4), xlim=c(0,M), add.grid=F, add.box=F, x.axis=F, y.axis=F)
+    rect(ybottom=0, ytop=1, xleft=1:M-1+0.1, xright=1:M-0.1, col=anchor.colors, border=1)
+    text(y=0, pos=1, x=1:M-0.5, labels=anchors)
+    fig.end()
+
+    ## prects=function(y, col) {
+    ##     rect(ybottom=y, ytop=y+1, xleft=1:M-1+0.1, xright=1:M-0.1, col=col, border=NA)
+    ## }
+    ## lac = get.colors(1:M)
+    ## prects(y=0, col=lac$col1)
+    ## prects(y=1, col=lac$col2)
+    ## prects(y=2, col=lac$col3)
+    ## rect(ybottom=0, ytop=3, xleft=1:M-1+0.1, xright=1:M-0.1, col=NA, border=1)
+    ## text(y=0, pos=1, x=1:M-0.5, labels=anchors)
+    ## fig.end()
+}

@@ -1,7 +1,7 @@
 # hpipe: Microbial genome unions from Hi-C maps
 
-This pipeline processes Hi-C maps to infer genome anchors and unions.
+This pipeline processes Hi-C maps to infer genome anchors and unions. It recieves as input an assemlby library and a Hi-C library, and outputs a collection of genome anchors and matching genome unions.
 
-It recieves as input an assemlby library and a Hi-C library.
+# INSTALLATION
 
-It outputs a collection of genome anchors and matching genome unions.
+git clone https://github.com/eitanyaffe/hpipe

@@ -2,3 +2,6 @@
 datasets
 projects
 tmp
+bin.*
+Rplots.pdf
+*.gz

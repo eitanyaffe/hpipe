@@ -107,7 +107,7 @@ C) Running commands.
 --------------------------------------------------------------------------------
 ## Examples
 
-* Beitel dataset *
+### Beitel dataset
 
 The Beitel dataset (https://peerj.com/articles/415/) contains
 a Hi-C map for a synthetic mixture of 5 genomes. Since reference genomes are 

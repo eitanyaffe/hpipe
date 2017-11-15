@@ -45,15 +45,19 @@ Select a working directory of your choice. Here we use /work/hpipe as an
 example.
 
 1. Get source code from github. 
+```
 %> mkdir -p /work
 %> cd /work
 %> git clone https://github.com/eitanyaffe/hpipe.git
+```
 
 This will download hpipe into /work/hpipe. 
 
 2. Set the environment variable HPIPE_DIR. For example, if using bash, add 
 the following line to your .bashrc:
+```
 export HPIPE_DIR=/work/hpipe
+```
 
 3. Add the $HPIPE_DIR/hpipe.pl wrapper script to your path. Either copy the
 script to a common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
@@ -67,22 +71,26 @@ commands.
 
 1. start an hpipe container
 ```
-$ ./hpipe.pl start -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg
+%> ./hpipe.pl start -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg
 ```
 
 2. generate simulated shotgun and Hi-C reads 
 ```
-$ ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
+%> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
    pp_simulate
 ```
 
 3. infer anchor-union pairs
+```
 %> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
    pp_basic
+```
 
 4. plot all figures
+```
 %> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
    pl_basic
+```
 
 --------------------------------------------------------------------------------
 # Usage

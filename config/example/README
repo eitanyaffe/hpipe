@@ -1,0 +1,6 @@
+Files in this directory
+- user_vars: Customize various user-defined parameters
+- path_vars: Customize input, output and external tool paths
+- main.cfg:  The experimental design, typically there is no need to edit this file
+
+To start a new project please copy the 3 files into a new directory and edit as needed.

@@ -8,84 +8,76 @@ RUN \
   yum install -y R
 
 # for '/usr/bin/time'
-RUN yum install -y ftp://195.220.108.108/linux/centos/7.4.1708/os/x86_64/Packages/time-1.7-45.el7.x86_64.rpm
-RUN yum install -y wget && yum install -y bwa
+RUN \
+yum install -y ftp://195.220.108.108/linux/centos/7.4.1708/os/x86_64/Packages/time-1.7-45.el7.x86_64.rpm && \
+yum install -y wget && \
+yum install -y bwa && \
+yum install -y git && \
+yum install -y parallel && echo 'will cite' | parallel --bibtex && \
+yum -y install emacs-nox && \
+yum install -y perl-CPAN && \
+yum install -y perl-Compress-Raw-Zlib && \
+curl -L http://cpanmin.us | perl - App::cpanminus && \
+cpanm Digest::MD5
 
 # Set the working directory
 ENV HPIPE_WD /hpipe
 WORKDIR $HPIPE_WD
 
 # R packages
-RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > $HPIPE_WD/.Rprofile
-RUN Rscript -e "install.packages(c('gplots', 'R.utils', 'igraph', 'mixLik', 'fastcluster'))"
+RUN echo "r <- getOption('repos'); r['CRAN'] <- 'http://cran.us.r-project.org'; options(repos = r);" > $HPIPE_WD/.Rprofile && \
+Rscript -e "install.packages(c('gplots', 'R.utils', 'igraph', 'maxLik', 'fastcluster', 'mixtools'))"
 
 # tools
 RUN mkdir /download
-RUN yum install -y git
 
-# SeqPrep
-RUN git clone https://github.com/jstjohn/SeqPrep.git /tools/SeqPrep && make -C /tools/SeqPrep
+# SeqPrep and sickle
+RUN git clone https://github.com/jstjohn/SeqPrep.git /tools/SeqPrep && make -C /tools/SeqPrep && \
+git clone https://github.com/najoshi/sickle.git /tools/sickle && make -C /tools/sickle
+
 ENV SEQPREP /tools/SeqPrep/SeqPrep
-
-# sickle
-RUN git clone https://github.com/najoshi/sickle.git /tools/sickle && make -C /tools/sickle
 ENV SICKLE /tools/sickle/sickle
 
 # misc
-RUN yum install -y parallel && echo 'will cite' | parallel --bibtex
-RUN chmod a+rwx /home
-RUN yum -y install emacs-nox
-
+# RUN chmod a+rwx /home
 # RUN echo "mkdir -p \$HOME/.parallel && touch \$HOME/.parallel/will-site" > /etc/profile.d/parallel_site.sh
-
-# perl installation
-RUN yum install -y perl-CPAN
-RUN yum install -y perl-Compress-Raw-Zlib
-RUN curl -L http://cpanmin.us | perl - App::cpanminus
-RUN cpanm Digest::MD5
 
 # install assembler (minia)
 ENV MINIA_VERSION v2.0.7-bin-Linux
+ENV MINIA /tools/minia/minia-${MINIA_VERSION}/bin/minia
 WORKDIR /tools/minia
 RUN wget https://github.com/GATB/minia/releases/download/v2.0.7/minia-${MINIA_VERSION}.tar.gz && tar xvf minia-${MINIA_VERSION}.tar.gz 
-ENV MINIA /tools/minia/minia-${MINIA_VERSION}/bin/minia
 
 # install MUMmer
 ENV MUMMER_VERSION 3.23
-WORKDIR /tools/mummer
-RUN wget https://downloads.sourceforge.net/project/mummer/mummer/${MUMMER_VERSION}/MUMmer${MUMMER_VERSION}.tar.gz && tar xvf MUMmer${MUMMER_VERSION}.tar.gz
-WORKDIR /tools/mummer/MUMmer${MUMMER_VERSION}
-RUN make
 ENV MUMMER_DIR /tools/mummer/MUMmer${MUMMER_VERSION}
+WORKDIR /tools/mummer
+RUN wget https://downloads.sourceforge.net/project/mummer/mummer/${MUMMER_VERSION}/MUMmer${MUMMER_VERSION}.tar.gz &&  \
+tar xvf MUMmer${MUMMER_VERSION}.tar.gz
 
 # bwa
 ENV BWA_BIN bwa
-
-# !!! move up 
-WORKDIR $HPIPE_WD
-RUN Rscript -e "install.packages(c('mixtools'))"
 
 # MetaGeneMark (gene prediction)
 WORKDIR /tools/mgm
 COPY gm_key_64.gz /tools/mgm/gm_key_64.gz
 COPY MetaGeneMark_linux_64.tar.gz /tools/mgm/MetaGeneMark_linux_64.tar.gz
-RUN gunzip gm_key_64.gz && tar xvf MetaGeneMark_linux_64.tar.gz
-RUN mv gm_key_64 MetaGeneMark_linux_64/mgm
+RUN gunzip gm_key_64.gz && tar xvf MetaGeneMark_linux_64.tar.gz && \
+mv gm_key_64 MetaGeneMark_linux_64/mgm
 ENV MGM /tools/mgm/MetaGeneMark_linux_64/mgm
 
 # diamond (rapid blast)
 ENV DIAMOND_VERSION v0.9.10
 WORKDIR /tools/diamond
-RUN wget http://github.com/bbuchfink/diamond/releases/download/${DIAMOND_VERSION}/diamond-linux64.tar.gz
-RUN tar xvf diamond-linux64.tar.gz
+RUN wget http://github.com/bbuchfink/diamond/releases/download/${DIAMOND_VERSION}/diamond-linux64.tar.gz && \
+tar xvf diamond-linux64.tar.gz
 ENV DIAMOND_BIN /tools/diamond/diamond
 
 # Perl graph module used for connected components for gene clustering
-RUN cpanm Graph
-RUN cpanm Switch
+RUN cpanm Graph && cpanm Switch
 
-# !!! move up 
-WORKDIR $HPIPE_WD
-RUN Rscript -e "install.packages(c('maxLik'))"
+# compile mummer !!! move up
+WORKDIR /tools/mummer/MUMmer${MUMMER_VERSION}
+RUN make
 
 WORKDIR $HPIPE_WD

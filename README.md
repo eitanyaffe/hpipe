@@ -15,21 +15,21 @@ questions or comments please contact Eitan Yaffe at eitan.yaffe@gmail.com.
 
 The hpipe pipeline steps include:
 
-1. Library preprocess (Process raw reads).
-  - Trim for quality
-  - Remove adapters
-  - Remove human reads (optional, requires Deconseq)
+1. Library preprocess.
+  * Trim raw reads for quality.
+  * Remove sequencing adapters.
+  * Remove human reads (optional, requires a locally installed Deconseq pipeline).
 
 2. Assembly. 
-  - Currently supports the minia assembler.
-  - Generate contigs.
+  * Currently supports the minia assembler.
+  * Generate contigs.
 
 3. Anchor/Union infererence.
-  - Computes seed anchors.
-  - Infers background model over seed anchors.
-  - Removes multi-anchor contigs until convergence.
-  - Infers final model over anchors.
-  - Extends each anchor into a matching genome union. 
+  * Computes seed anchors.
+  * Infers background model over seed anchors.
+  * Removes multi-anchor contigs until convergence.
+  * Infers final model over anchors.
+  * Extends each anchor into a matching genome union. 
 
 --------------------------------------------------------------------------------
 ## Prerequisites
@@ -38,11 +38,13 @@ The hpipe tool requires docker (https://www.docker.com) and a perl interpreter.
 All work is done within a docker container, making the tool compatible with most 
 linux systems. The tool was tested under CentoOS 6.9.
 
+Deconseq is a pipeline for the removal of human reads. It can be downloaded 
+from http://deconseq.sourceforge.net/. The use of Deconseq is optional.
+
 --------------------------------------------------------------------------------
 ## Installation
 
-Select a working directory of your choice. Here we use /work/hpipe as an 
-example.
+Select a working directory. Here we use /work/hpipe as an example.
 
 1. Get source code from github. 
 ```
@@ -51,15 +53,13 @@ example.
 %> git clone https://github.com/eitanyaffe/hpipe.git
 ```
 
-This will download hpipe into /work/hpipe. 
-
 2. Set the environment variable HPIPE_DIR. For example, if using bash, add 
 the following line to your .bashrc:
 ```
 export HPIPE_DIR=/work/hpipe
 ```
 
-3. Add the $HPIPE_DIR/hpipe.pl wrapper script to your path. Either copy the
+3. Add the `$HPIPE_DIR/hpipe.pl` wrapper script to your path. Either copy the
 script to a common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
 path.
 
@@ -128,7 +128,7 @@ Finally you can plot the results:
 --------------------------------------------------------------------------------
 ## FAQ
 
-Below are solutions for common problems you may encounter.
+Below are solutions to common problems.
 
 --------------------------------------------------------------------------------
 

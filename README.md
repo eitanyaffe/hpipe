@@ -133,5 +133,3 @@ to be able to reuse that name."
 S1: A docker container was not left hanging for some reason. To remove the 
 container run:
 %> docker rm -f fc86bf399649
-
---------------------------------------------------------------------------------

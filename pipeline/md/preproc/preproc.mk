@@ -179,6 +179,7 @@ HUMAN_SUFFIX='*clean*'
 
 $(NO_HUMAN_DONE): $(PP_COUNT_LIGATION)
 	$(call _start,$(NO_HUMAN_DIR))
+ifeq ($(REMOVE_HUMAN),T)
 	@echo "================================================================================"
 	@echo "Removing human sequences (DeconSeq)"
 	@echo "================================================================================"
@@ -196,9 +197,16 @@ $(NO_HUMAN_DONE): $(PP_COUNT_LIGATION)
 		total.max.jobs.fn=$(MAX_JOBS_FN) \
 		dtype=$(DTYPE) \
 		jobname=deconseq
+else
+	$(foreach f,$(notdir $(wildcard $(NO_HUMAN_IDIR)/*.fastq)),cp $(NO_HUMAN_IDIR)/$f $(NO_HUMAN_DIR)/$(subst .fastq,,$f).clean.fq;$(ASSERT);)
+endif
 	$(_end_touch)
 $(PP_COUNT_HUMAN): $(NO_HUMAN_DONE)
 	$(_md)/pl/count_fastq.pl $(NO_HUMAN_DIR) $(FREE_PREFIX) $(HUMAN_SUFFIX) no_human_$(PREPROC_MODE) $@
+
+##########################################################################################
+# final links
+##########################################################################################
 
 PREPROC_FINAL_DONE?=$(PREPROC_FINAL_DIR)/.done
 $(PREPROC_FINAL_DONE): $(PP_COUNT_HUMAN)
@@ -206,6 +214,10 @@ $(PREPROC_FINAL_DONE): $(PP_COUNT_HUMAN)
 	$(foreach f,$(notdir $(wildcard $(NO_HUMAN_DIR)/*clean.fq)),ln -sf ../../libs/$(LIB_ID)/result_$(PREPROC_MODE)/$f $(PREPROC_FINAL_DIR)/$f;$(ASSERT);)
 	$(_end_touch)
 preproc_result: $(PREPROC_FINAL_DONE)
+
+##########################################################################################
+# interface rule
+##########################################################################################
 
 make_preproc:
 ifeq ($(PREPROC_MODES),simple)

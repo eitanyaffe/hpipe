@@ -14,6 +14,7 @@ $(SIM_SPLIT_DONE):
 
 $(SIM_DONE): $(SIM_SPLIT_DONE)
 	$(call _start,$(SIM_RESULT_DIR))
+	$(call _file_exists,$(MUMMER))
 	$(_R) $(_md)/R/distrib_similarity.r distrib.similarity \
 		mummer=$(MUMMER) \
 		mummer.parse=$(MUMMER_PARSE) \

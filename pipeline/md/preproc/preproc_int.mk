@@ -59,6 +59,9 @@ SEQPREP_PHRED_FLAG?=-6
 ADAPTOR1=AGATCGGAAGAGCAC
 ADAPTOR2=AGATCGGAAGAGCGT
 
+# should remove human reads?
+REMOVE_HUMAN?=T
+
 DECONSEQ_SCRIPT?=$(DECONSEQ_DIR)/deconseq.pl
 
 # Alignment coverage threshold in percentage
@@ -74,3 +77,5 @@ DECONSEQ_MAX_JOBS?=50
 # Name of deconseq database to use (human)
 DECONSEQ_DBS?=hsref
 
+# plotting
+PP_LIB_TITLES?=$(PP_LIB_IDS)

@@ -22,7 +22,7 @@ cmetric: $(CMETRIC_DONE)
 
 CCLUSTER_DONE?=$(CCLUSTER_DIR)/.done_ccluster
 $(CCLUSTER_DONE): $(CONTIG_MATRIX_FILTERED_DONE)
-	$(_start)
+	$(call _start,$(CCLUSTER_DIR))
 	$(call _time,$(CCLUSTER_DIR)) \
 		$(CCLUSTER_BIN) \
 		    -contigs $(CONTIG_TABLE) \

@@ -1,32 +1,36 @@
 if [[ $# -eq 0 ]] ; then
-    echo "usage: $(basename $0) <hpipe_dir> <config_dir>"
+    echo "usage: $(basename $0) <config_dir>"
     exit 0
 fi
-HPIPE_DIR=$1
-CFG_DIR=$2
+CFG_DIR=$1
+# CFG_BASE=$(basename $CFG_DIR)
 
-CFG_BASE=$(basename $CFG_DIR)
-
-# add current dir if not absolute
-if [ ${HPIPE_DIR:0:1} != "/" ]; then
-HPIPE_DIR=$PWD/$HPIPE_DIR
-fi
 if [ ${CFG_DIR:0:1} != "/" ]; then
 CFG_DIR=$PWD/$CFG_DIR
 fi
-
 
 LINK_FILE=$CFG_DIR/path_vars
 PROJECT_ID=`cat ${CFG_DIR}/project_id`
 
 # parse docker link file
-echo "volume file: $LINK_FILE"
-IO_PATHS="-v $HPIPE_DIR:/hpipe -v $CFG_DIR:/hpipe/config/$CFG_BASE"
-while read p; do
-    [ -z "$p" ] || [ "${p:0:1}" == "#" ] && continue
-    echo "line: $p"
-    array=(${p//=/ })
+echo "Reading volume file: $LINK_FILE"
+echo "Providing directories in docker container:"
+IO_PATHS="-v $HPIPE_DIR/pipeline:/hpipe -v $CFG_DIR:/hpipe/config"
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    [ -z "$line" ] || [ "${line:0:1}" == "#" ] && continue
+    array=($(eval echo ${line//=/ }))
+    echo " /links/${array[0]} ==> ${array[1]}"
     IO_PATHS="$IO_PATHS -v $HOME:$HOME -v ${array[1]}:/links/${array[0]}"
+    if [ ${array[0]} == "BASE_OUTDIR" ]; then 
+	mkdir -p ${array[1]}
+    fi
+    if [ ${array[0]} == "BASE_TMPDIR" ]; then 
+	mkdir -p ${array[1]}
+    fi
+    if [ ! -d ${array[1]} ]; then
+	echo "Error: Directory ${array[1]} does not exist"
+	exit 1
+    fi
 done <${LINK_FILE}
 
 IMAGE_NAME=eitanyaffe/hpipe:v1.00

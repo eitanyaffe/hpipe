@@ -3,6 +3,7 @@ download_fasta?=$(GENOME_ORG_DIR)/.done
 $(download_fasta):
 	@rm -rf $(GENOME_ORG_DIR)
 	$(call _start,$(GENOME_ORG_DIR))
+	$(call _assert,GENEBANK_DIR)
 	$(call _time,$(GENOME_DIR),download) $(_md)/pl/download_genomes.pl \
 		$(DOWNLOAD_INPUT_TABLE) \
 	 	$(GENEBANK_TABLE) \

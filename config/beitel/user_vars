@@ -7,13 +7,24 @@
 # - Paths are defined in the path_vars file.
 ##########################################################################################
 
-
 # title used in QC plots
-SET_TITLE=title1
+SET_TITLE=beitel
 
 # Restriction enzyme
-CUTTER_TITLE?=DpnII
-CUTTER_SITE?=GATC
+CUTTER_SITE=AAGCTT
+CUTTER_TITLE=HindIII
 
 # remove human reads using deconseq?
 REMOVE_HUMAN=F
+
+# download ref genome
+GENOME_ID=beitel
+DOWNLOAD_INPUT_TABLE=input/genome_tables/beitel
+
+# simulate reads for generating the assembly
+BASE_XCOVERAGE=10
+ABUNDANCE_MIN=1
+ABUNDANCE_MAX=1
+
+CCLUSTER_MIN_COVERAGE=10
+CCLUSTER_MIN_ELEMENTS=10

@@ -38,6 +38,7 @@ DTYPE?=par
 
 # NCBI files, downloaded from ftp://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/
 # First line (which has an #) was removed manually
+# GENEBANK_DIR?=/relman01/shared/databases/NCBI/Genomes/Feb_2017
 GENEBANK_TABLE?=$(GENEBANK_DIR)/assembly_summary_genbank.txt.2
 
 #####################################################################################################

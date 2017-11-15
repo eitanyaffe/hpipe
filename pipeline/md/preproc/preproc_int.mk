@@ -59,6 +59,9 @@ SEQPREP_PHRED_FLAG?=-6
 ADAPTOR1=AGATCGGAAGAGCAC
 ADAPTOR2=AGATCGGAAGAGCGT
 
+# should remove human reads?
+REMOVE_HUMAN?=T
+
 DECONSEQ_SCRIPT?=$(DECONSEQ_DIR)/deconseq.pl
 
 # Alignment coverage threshold in percentage

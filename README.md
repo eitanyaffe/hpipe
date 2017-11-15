@@ -91,11 +91,32 @@ commands.
 The various pipeline parameters, including paths and values, are adjusted via
 a configuration file. 
 
-A) Edit the configuration file.
+A) Prepare a configuration directory.
 
-B) Starting/Stopping a container.
+B) Managing containers.
 
 C) Running commands.
+
+--------------------------------------------------------------------------------
+# Examples
+
+* Beitel dataset *
+
+The Beitel dataset (https://peerj.com/articles/415/) contains
+a Hi-C map for a synthetic mixture of 5 genomes. Since reference genomes are 
+available the dataset comes without an assembly library. Therefore, to generate
+an assembly, we simulate an assembly library from the reference genomes.
+
+First download the Hi-C map from Sequence Read Archives (SRX377733).
+
+To simulate the standard shotgun reads run:
+%> ./hpipe.pl -c config/beitel/beitel.cfg -s pp_simulate
+
+Then proceed normally to infer anchor/union pairs:
+%> ./hpipe.pl -c config/beitel/beitel.cfg -s pp_basic
+
+Finally you can plot the results:
+%> ./hpipe.pl -c config/beitel/beitel.cfg -s pl_plot_basic
 
 --------------------------------------------------------------------------------
 # FAQ

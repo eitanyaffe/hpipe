@@ -12,9 +12,13 @@ BASE_OUTDIR=${HPIPE_DIR}/projects
 BASE_TMPDIR=${HPIPE_DIR}/tmp
 
 # input files
-HIC_INPUTDIR=${HPIPE_DIR}/datasets/example/hic_reads
-ASSEMBLY_INPUTDIR=${HPIPE_DIR}/datasets/example/assembly_reads
+HIC_INPUTDIR=/relman04/projects/HiC/public/Beitel_2014
 
 # To use deconseq for removal of human reads it must be installed and the directory
 # must be set here. Also, set REMOVE_HUMAN to true in the user_vars file.
 # DECONSEQ_DIR=/path/to/deconseq
+
+# the database file assembly_summary_genbank.txt was downloaded from 
+# ftp://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/. The first line (contains a '#') 
+# was removed manually
+GENEBANK_DIR=/relman01/shared/databases/NCBI/Genomes/Feb_2017

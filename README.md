@@ -11,7 +11,7 @@ It is distributed under the GNU General Public License v3.0. If you have
 questions or comments please contact Eitan Yaffe at eitan.yaffe@gmail.com.
 
 --------------------------------------------------------------------------------
-# Algorithm Overview
+## Algorithm Overview
 
 The hpipe pipeline steps include:
 
@@ -32,14 +32,14 @@ The hpipe pipeline steps include:
   - Extends each anchor into a matching genome union. 
 
 --------------------------------------------------------------------------------
-# Prerequisites
+## Prerequisites
 
 The hpipe tool requires docker (https://www.docker.com) and a perl interpreter. 
 All work is done within a docker container, making the tool compatible with most 
 linux systems. The tool was tested under CentoOS 6.9.
 
 --------------------------------------------------------------------------------
-# Installation
+## Installation
 
 Select a working directory of your choice. Here we use /work/hpipe as an 
 example.
@@ -64,7 +64,7 @@ script to a common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
 path.
 
 --------------------------------------------------------------------------------
-# Quick Start
+## Quick Start
 
 To verify hpipe has been installed successfully you can run the following
 commands.
@@ -93,7 +93,7 @@ commands.
 ```
 
 --------------------------------------------------------------------------------
-# Usage
+## Usage
 
 The various pipeline parameters, including paths and values, are adjusted via
 a configuration file. 
@@ -105,7 +105,7 @@ B) Managing containers.
 C) Running commands.
 
 --------------------------------------------------------------------------------
-# Examples
+## Examples
 
 * Beitel dataset *
 
@@ -126,11 +126,12 @@ Finally you can plot the results:
 %> ./hpipe.pl -c config/beitel/beitel.cfg -s pl_plot_basic
 
 --------------------------------------------------------------------------------
-# FAQ
+## FAQ
 
 Below are solutions for common problems you may encounter.
 
 --------------------------------------------------------------------------------
+
 
 Q1: I am getting the following error message:
 "Error response from daemon: Conflict. The name "hpipe_ref_eitany" is already 
@@ -140,3 +141,6 @@ to be able to reuse that name."
 S1: A docker container was not left hanging for some reason. To remove the 
 container run:
 %> docker rm -f fc86bf399649
+
+--------------------------------------------------------------------------------
+

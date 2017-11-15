@@ -1,0 +1,16 @@
+##########################################################################################
+# path_vars
+#
+# Define paths to directories of input, output and external tools in this file
+##########################################################################################
+
+# project paths
+BASE_OUTDIR=${HPIPE_DIR}/projects
+BASE_TMPDIR=${HPIPE_DIR}/tmp
+
+# input files
+HIC_INPUTDIR=${HPIPE_DIR}/datasets/example/hic_reads
+ASSEMBLY_INPUTDIR=${HPIPE_DIR}/datasets/example/assembly_reads
+
+# pipeline for human read removal
+DECONSEQ_DIR=/relman01/shared/tools/deconseq-standalone-0.4.3

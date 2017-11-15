@@ -1,0 +1,4 @@
+base.taxid	taxid	accession	name	assembly_level	release	excluded	ftp.path
+39485	515620	GCA_000146185.1	[Eubacterium] eligens ATCC 27750	Complete Genome	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/146/185/GCA_000146185.1_ASM14618v1
+66219	357809	GCA_000018685.1	Lachnoclostridium phytofermentans ISDg	Complete Genome	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/018/685/GCA_000018685.1_ASM1868v1
+292800	292800	GCA_001688625.1	Flavonifractor plautii	Complete Genome	Major		ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/688/625/GCA_001688625.1_ASM168862v1

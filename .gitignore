@@ -5,3 +5,4 @@ tmp
 bin.*
 Rplots.pdf
 *.gz
+*.pdf

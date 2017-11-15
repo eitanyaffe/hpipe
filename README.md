@@ -109,7 +109,7 @@ C) Running commands.
 
 ### Beitel dataset
 
-The Beitel dataset [(Beitel et al., PeerJ 2014)](https://peerj.com/articles/415/) contains
+The Beitel dataset ([Beitel et al., PeerJ 2014](https://peerj.com/articles/415/)) contains
 a Hi-C map for a synthetic mixture of 5 genomes. Since reference genomes are 
 available the dataset comes without an assembly library. Therefore, to generate
 an assembly, we simulate an assembly library from the reference genomes.

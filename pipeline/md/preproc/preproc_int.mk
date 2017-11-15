@@ -74,3 +74,5 @@ DECONSEQ_MAX_JOBS?=50
 # Name of deconseq database to use (human)
 DECONSEQ_DBS?=hsref
 
+# plotting
+PP_LIB_TITLES?=$(PP_LIB_IDS)

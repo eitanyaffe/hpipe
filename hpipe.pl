@@ -5,13 +5,16 @@ use POSIX;
 use warnings FATAL => qw(all);
 use File::Basename;
 use Getopt::Long;
+use Env;
 
 if ($#ARGV == -1) {
 	print STDERR "usage: $0 <command> [options]\n";
 	print STDERR "command options: \n";
 	print STDERR "  start: start hpipe container\n";
-	print STDERR "  run: execute step on container\n";
 	print STDERR "  stop: stop hpipe container\n";
+	print STDERR "  status: check status of docker container\n";
+	print STDERR "  step: execute step\n";
+	print STDERR "  drystep: show which targets will be generated if step is executed\n";
 	print STDERR "options\n";
 	print STDERR " -c: config file\n";
 	print STDERR " -s: step\n";
@@ -19,8 +22,8 @@ if ($#ARGV == -1) {
 }
 
 my $command = $ARGV[0];
-my $cfg="config/ref/n5.cfg";
-my $step="pp_basic";
+my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/example/design.cfg";
+my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
 
 GetOptions (
     "c=s" => \$cfg,
@@ -28,26 +31,37 @@ GetOptions (
 
 my $dir = dirname($cfg);
 my $fn = basename($cfg);
-print "config dir: $dir\n";
-print "config file: $fn\n";
+print "config file: $cfg\n";
 
 if ($command eq "start") {
-    system("bash ./docker/drun.sh $dir") == 0 or die;
-    system("bash ./docker/dexec.sh $dir make c=config/$fn init") == 0 or die;
+    msystem("bash ./docker/drun.sh $dir");
+    msystem("bash ./docker/dexec.sh $dir make c=config/$fn init");
 }
 
 if ($command eq "stop") {
-    system("bash ./docker/dremove.sh $dir") == 0 or die;
+    msystem("bash ./docker/dremove.sh $dir");
 }
 
-if ($command eq "run") {
-    system("bash ./docker/dexec.sh $dir make c=config/$fn $step") == 0 or die;
+if ($command eq "step") {
+    print "step: $step\n";
+    msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step");
 }
 
-if ($command eq "dryrun") {
-    system("bash ./docker/dexec.sh $dir make c=config/$fn $step -n | grep START") == 0 or die;
+if ($command eq "drystep") {
+    print "step: $step\n";
+    msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step -n | grep START");
 }
 
 if ($command eq "debug") {
-    system("bash ./docker/dexec.sh $dir bash") == 0 or die;
+    msystem("bash ./docker/dexec.sh $dir bash");
+}
+
+if ($command eq "status") {
+    msystem("bash ./docker/dstatus.sh $dir");
+}
+
+sub msystem {
+    my $cmd = shift;
+    print "# $cmd\n";
+    system($cmd) == 0 or die;
 }

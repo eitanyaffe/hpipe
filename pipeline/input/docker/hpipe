@@ -54,6 +54,8 @@ ENV MINIA /tools/minia/minia-${MINIA_VERSION}/bin/minia
 ENV MUMMER_VERSION 3.23
 WORKDIR /tools/mummer
 RUN wget https://downloads.sourceforge.net/project/mummer/mummer/${MUMMER_VERSION}/MUMmer${MUMMER_VERSION}.tar.gz && tar xvf MUMmer${MUMMER_VERSION}.tar.gz
+WORKDIR /tools/mummer/MUMmer${MUMMER_VERSION}
+RUN make
 ENV MUMMER_DIR /tools/mummer/MUMmer${MUMMER_VERSION}
 
 # bwa

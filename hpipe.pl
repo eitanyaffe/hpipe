@@ -13,35 +13,41 @@ if ($#ARGV == -1) {
 	print STDERR "  run: execute step on container\n";
 	print STDERR "  stop: stop hpipe container\n";
 	print STDERR "options\n";
-	print STDERR " -pdir: pipeline dir\n";
-	print STDERR " -cdir: config dir\n";
-	print STDERR " -cfg: config file\n";
-	print STDERR " -step: step\n";
+	print STDERR " -c: config file\n";
+	print STDERR " -s: step\n";
 	exit 1;
 }
 
 my $command = $ARGV[0];
-my $pdir="pipeline";
-my $cdir="config/ref";
 my $cfg="config/ref/n5.cfg";
 my $step="pp_basic";
 
 GetOptions (
-    "pdir=s"   => \$pdir,
-    "cdir=s"   => \$cdir,
-    "cfg=s"   => \$cfg,
-    "step=s"   => \$step
-    );
+    "c=s" => \$cfg,
+    "s=s" => \$step);
+
+my $dir = dirname($cfg);
+my $fn = basename($cfg);
+print "config dir: $dir\n";
+print "config file: $fn\n";
 
 if ($command eq "start") {
-    system("bash ./docker/drun.sh $pdir $cdir") == 0 or die;
-    system("bash ./docker/dexec.sh $cdir make c=$cfg init") == 0 or die;
+    system("bash ./docker/drun.sh $dir") == 0 or die;
+    system("bash ./docker/dexec.sh $dir make c=config/$fn init") == 0 or die;
 }
 
 if ($command eq "stop") {
-    system("bash ./docker/dremove.sh $cdir") == 0 or die;
+    system("bash ./docker/dremove.sh $dir") == 0 or die;
 }
 
 if ($command eq "run") {
-    system("bash ./docker/dexec.sh $cdir make c=$cfg $step") == 0 or die;
+    system("bash ./docker/dexec.sh $dir make c=config/$fn $step") == 0 or die;
+}
+
+if ($command eq "dryrun") {
+    system("bash ./docker/dexec.sh $dir make c=config/$fn $step -n | grep START") == 0 or die;
+}
+
+if ($command eq "debug") {
+    system("bash ./docker/dexec.sh $dir bash") == 0 or die;
 }

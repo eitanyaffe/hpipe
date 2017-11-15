@@ -1,6 +1,4 @@
-################################################################################
 # hpipe: A tool for the analysis of metagenomic Hi-C data
-################################################################################
 
 The hpipe pipeline processes metagenomic Hi-C maps. The core functionality is 
 the inference of genome anchor/union pairs. Each genome anchor is a collection
@@ -11,9 +9,7 @@ The pipeline was developed by Eitan Yaffe, at David Relman's lab, Stanford.
 It is distributed under the GNU General Public License v3.0. If you have
 questions or comments please contact Eitan Yaffe at eitan.yaffe@gmail.com.
 
-################################################################################
 # Algorithm Overview
-################################################################################
 
 The hpipe pipeline steps include:
 
@@ -33,9 +29,7 @@ The hpipe pipeline steps include:
   - Infers final model over anchors.
   - Extends each anchor into a matching genome union. 
 
-################################################################################
 # Prerequisites
-################################################################################
 
 The tool requires docker (https://www.docker.com) and a perl interpreter. All
 work is done with a docker container, making the tool compatible with any 
@@ -47,9 +41,7 @@ TBD: Make it optional.
 Genebank. For downloading ref genomes. 
 TBD: Have local copy of ref genomes.
 
-################################################################################
 # Installation
-################################################################################
 
 Use a working directory of your choice. Here we use /work/hpipe as an example.
 
@@ -68,9 +60,7 @@ export HPIPE_DIR=/work/hpipe
 script to a common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
 path.
 
-################################################################################
 # Quick Start
-################################################################################
 
 To verify hpipe has been installed successfully you can run the following
 commands.
@@ -90,9 +80,7 @@ commands.
 %> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
    pl_basic
 
-################################################################################
 # Usage
-################################################################################
 
 The various pipeline parameters, including paths and values, are adjusted via
 a configuration file. 
@@ -103,9 +91,7 @@ B) Starting/Stopping a container.
 
 C) Running commands.
 
-################################################################################
 # FAQ
-################################################################################
 
 Below are solutions for common problems you may encounter.
 

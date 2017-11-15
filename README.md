@@ -66,11 +66,15 @@ To verify hpipe has been installed successfully you can run the following
 commands.
 
 1. start an hpipe container
+```
 $ ./hpipe.pl start -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg
+```
 
 2. generate simulated shotgun and Hi-C reads 
+```
 $ ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
    pp_simulate
+```
 
 3. infer anchor-union pairs
 %> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \

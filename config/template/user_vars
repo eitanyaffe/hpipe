@@ -7,7 +7,6 @@
 # - Paths are defined in the path_vars file.
 ##########################################################################################
 
-
 # title used in QC plots
 SET_TITLE=title1
 

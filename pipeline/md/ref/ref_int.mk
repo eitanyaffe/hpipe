@@ -15,6 +15,11 @@ $(call _register_module,ref,$(units),global,$(preqs_var))
 GENOME_DIR?=$(OUTDIR)/ref_genomes/$(GENOME_ID)
 
 GENOME_ORG_DIR?=$(GENOME_DIR)/orgs
+GENOME_INPUT_DIR?=$(GENOME_DIR)/input
+
+# truncate downloaded genomes, used to generate a small test dataset
+TRUNCATE_DOWNLOADED_GENOMES?=F
+TRUNCATE_DOWNLOADED_GENOMES_LINES?=10000
 
 # maps accession and id, use with DOWNLOAD_INPUT_TABLE to determine species
 GENOME_CONTIG_TABLE?=$(GENOME_DIR)/contig_table

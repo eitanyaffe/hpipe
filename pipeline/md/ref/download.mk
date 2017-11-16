@@ -1,6 +1,6 @@
 
-download_fasta?=$(GENOME_ORG_DIR)/.done
-$(download_fasta):
+DOWNLOAD_FASTA_DONE?=$(GENOME_ORG_DIR)/.done
+$(DOWNLOAD_FASTA_DONE):
 	@rm -rf $(GENOME_ORG_DIR)
 	$(call _start,$(GENOME_ORG_DIR))
 	$(call _assert,GENEBANK_DIR)
@@ -9,16 +9,31 @@ $(download_fasta):
 	 	$(GENEBANK_TABLE) \
 	 	$(GENOME_ORG_DIR)
 	$(_end_touch)
+download_base: $(DOWNLOAD_FASTA_DONE)
 
-$(REF_ORIGINAL_FASTA): $(download_fasta)
-	$(_start)
-	cat `find $(GENOME_ORG_DIR) -name genome.fasta` > $@
-	$(_end)
+DOWNLOAD_INPUT_DONE?=$(GENOME_ORG_DIR)/.done_input
+$(DOWNLOAD_INPUT_DONE): $(DOWNLOAD_FASTA_DONE)
+	$(call _start,$(GENOME_INPUT_DIR))
+	$(_md)/pl/download_process.pl \
+		$(GENOME_ORG_DIR) \
+		genome.fasta \
+		$(TRUNCATE_DOWNLOADED_GENOMES) \
+		$(TRUNCATE_DOWNLOADED_GENOMES_LINES) \
+		$(GENOME_INPUT_DIR)
+	$(_end_touch)
+download_input: $(DOWNLOAD_INPUT_DONE)
 
-$(GENOME_CONTIG_TABLE): $(download_fasta)
+$(REF_ORIGINAL_FASTA): $(DOWNLOAD_INPUT_DONE)
 	$(_start)
-	$(_md)/pl/contig_summary.pl $(GENOME_ORG_DIR) genome.fasta $@
+	cat `find $(GENOME_INPUT_DIR) -type f` > $@
 	$(_end)
+download_merge: $(REF_ORIGINAL_FASTA)
+
+$(GENOME_CONTIG_TABLE): $(DOWNLOAD_INPUT_DONE)
+	$(_start)
+	$(_md)/pl/contig_summary.pl $(GENOME_INPUT_DIR) $@
+	$(_end)
+download_summary: $(GENOME_CONTIG_TABLE)
 
 ##################################################################################################
 # construct psuedo-genomes (concatenate all contigs and discard Ns)

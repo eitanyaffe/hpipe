@@ -1,7 +1,5 @@
 SIMULATED_ID?=EC_BT_mix
 
-# abundance
-
 # assembly
 ASSEMBLY_COORDS?=$(ADIR)/coords
 ASSEMBLY_READS1?=$(ASSEMBLY_READ_DIR)/R1.fastq

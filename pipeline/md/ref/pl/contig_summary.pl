@@ -5,13 +5,12 @@ use File::Basename;
 use warnings FATAL => qw(all);
 
 if ($#ARGV == -1) {
-	print STDERR "usage: $0 <genome dir> <genome filename> <ofn>\n";
+	print STDERR "usage: $0 <genome dir> <ofn>\n";
 	exit 1;
 }
 
 my $idir = $ARGV[0];
-my $pattern = $ARGV[1];
-my $ofn = $ARGV[2];
+my $ofn = $ARGV[1];
 
 my @files = <$idir/*>;
 
@@ -20,12 +19,10 @@ open(OUT, ">", $ofn) or die $ofn;
 print OUT "genome\tgenome_id\tcontig_index\tcontig\tlength\n";
 
 my $genome = 1;
-
-foreach my $dir (@files) {
+foreach my $ifn (@files) {
     my $seq = "";
     my $contig = "";
-    my $ifn = $dir."/".$pattern;
-    my $genome_id = basename($dir);
+    my $genome_id = basename($ifn);
     
     next if ($genome_id eq "united");
     open(IN, $ifn) or die $ifn;

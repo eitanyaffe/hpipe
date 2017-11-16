@@ -23,7 +23,7 @@ if ($#ARGV == -1) {
 }
 
 my $command = $ARGV[0];
-my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/example/example.cfg";
+my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/template/basic.cfg";
 my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
 
 GetOptions (

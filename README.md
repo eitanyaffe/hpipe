@@ -87,6 +87,9 @@ fastq file is determined by the `ASSEMBLY_INPUTDIR` in the path_vars file.
 pairs. The location of the fastq file is determined by the `HIC_INPUTDIR` in 
 the path_vars file.
 
+Each project is associated with a docker container. The container is setup
+to point to the various paths exposed by the user in the path_vars file.
+
 ### Output
 
 The pipeline outputs all files under `BASE_OUTDIR`, defined in path_vars.
@@ -100,7 +103,7 @@ Temporary files reside under BASE_TMPDIR.
 
 To verify hpipe has been successfully installed run the following:
 
-1. Start an hpipe container
+1. Start an hpipe container. Each project requires a separate container.
 ```
 %> ./hpipe.pl start -c config/example/example.cfg
 ```

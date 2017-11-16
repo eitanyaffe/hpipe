@@ -1,0 +1,18 @@
+##########################################################################################
+# user_vars
+#
+# Customize various parameters in this file.
+#
+# - The project id is defined in the project_id file.
+# - Paths are defined in the path_vars file.
+##########################################################################################
+
+# title used in QC plots
+SET_TITLE=ref
+
+# Restriction enzyme
+CUTTER_TITLE?=DpnII
+CUTTER_SITE?=GATC
+
+# remove human reads using deconseq?
+REMOVE_HUMAN=F

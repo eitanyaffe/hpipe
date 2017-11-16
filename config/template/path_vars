@@ -12,8 +12,8 @@ BASE_OUTDIR=${HPIPE_DIR}/projects
 BASE_TMPDIR=${HPIPE_DIR}/tmp
 
 # input files
-HIC_INPUTDIR=${HPIPE_DIR}/datasets/example/hic_reads
-ASSEMBLY_INPUTDIR=${HPIPE_DIR}/datasets/example/assembly_reads
+HIC_INPUTDIR=${HPIPE_DIR}/datasets/test/hic
+ASSEMBLY_INPUTDIR=${HPIPE_DIR}/datasets/test/assembly
 
 # To use deconseq for removal of human reads it must be installed and the directory
 # must be set here. Also, set REMOVE_HUMAN to true in the user_vars file.

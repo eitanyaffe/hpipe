@@ -3,8 +3,8 @@
 The hpipe tool processes metagenomic Hi-C maps to infer properties of the
 underlying genomes, in the form of genome anchor/union pairs. Each genome 
 anchor is a collection contigs that are contained in the genomes of one 
-ore more related strains, while each matching genome union is the combined 
-genomes of the related strains. 
+or more related strains, while each matching genome union is the combined 
+genomes of the strains. 
  
 The pipeline was developed by Eitan Yaffe, at David Relman's lab, Stanford. 
 It is distributed under the GNU General Public License v3.0. If you have
@@ -13,7 +13,7 @@ questions or comments please contact Eitan Yaffe at eitan.yaffe@gmail.com.
 --------------------------------------------------------------------------------
 ## Algorithm Overview
 
-The hpipe pipeline steps include:
+The major pipeline steps include:
 
 1. Library preprocess.
   * Trim raw reads for quality.
@@ -64,33 +64,36 @@ script to a common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
 path.
 
 --------------------------------------------------------------------------------
+## Input and Output
+
+### Input
+
+The pipeline gets as input two DNA libraries. 
+* Assembly library, used to generate a metagenomic assembly.
+* Hi-C library, used to infer the background model and infer anchor/genome 
+pairs.
+
+--------------------------------------------------------------------------------
 ## Quick Start
 
-To verify hpipe has been installed successfully you can run the following
-commands.
+To verify hpipe has been successfully installed run the following:
 
-1. start an hpipe container
+1. Start an hpipe container
 ```
-%> ./hpipe.pl start -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg
-```
-
-2. generate simulated shotgun and Hi-C reads 
-```
-%> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
-   pp_simulate
+%> ./hpipe.pl start -c config/example/example.cfg
 ```
 
-3. infer anchor-union pairs
+2. Infer anchor-union pairs. This should take around 10 minutes.
 ```
-%> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
-   pp_basic
+%> ./hpipe.pl step -c config/example/example.cfg -s pp_basic
 ```
 
-4. plot all figures
+3. Close the container.
 ```
-%> ./hpipe.pl run -pdir pipeline -cdir config/ref -cfg config/ref/n5.cfg -step \
-   pl_basic
+%> ./hpipe.pl stop -c config/example/example.cfg
 ```
+
+All output files are generated under projects/project1.
 
 --------------------------------------------------------------------------------
 ## Usage
@@ -117,13 +120,19 @@ an assembly, we simulate an assembly library from the reference genomes.
 First download the Hi-C map from Sequence Read Archives (SRX377733).
 
 To simulate the standard shotgun reads run:
+```
 %> ./hpipe.pl -c config/beitel/beitel.cfg -s pp_simulate
+```
 
 Then proceed normally to infer anchor/union pairs:
+```
 %> ./hpipe.pl -c config/beitel/beitel.cfg -s pp_basic
+```
 
 Finally you can plot the results:
+```
 %> ./hpipe.pl -c config/beitel/beitel.cfg -s pl_plot_basic
+```
 
 --------------------------------------------------------------------------------
 ## FAQ
@@ -140,7 +149,9 @@ to be able to reuse that name."
 
 S1: A docker container was not left hanging for some reason. To remove the 
 container run:
+```
 %> docker rm -f fc86bf399649
+```
 
 --------------------------------------------------------------------------------
 

@@ -7,12 +7,10 @@ matching *genome union* is the combined genomes of the strains.
 
 As a service, the pipeline starts of from raw reads and performs various
 initial stages including quality trimming, removal of adapter sequences
-and metagenomic assembly.
-
-The core functionality of the pipeline is (1) to infer a background model of
-spurious contacts between contigs that belong to different cells (termed
-non-linked*) and (2) to infer a collection of non-linked contig sets, termed
-anchors.
+and metagenomic assembly. The core functionality of the pipeline is
+(1) to infer a background model of spurious contacts between contigs that
+belong to different cells (termed *non-linked*) and (2) to infer a
+collection of non-linked contig sets, termed anchors.
 
 The pipeline was developed by Eitan Yaffe, at David Relman's lab, Stanford
 University School of Medicine. It is distributed under the GNU General
@@ -22,12 +20,12 @@ Yaffe at eitan.yaffe@gmail.com.
 ## Pre-requisites
 
 The tool requires docker (https://www.docker.com), perl and bash. All work is
-done within a docker container, simplifying the installation dramatically and
-making the tool compatible with most linux systems. Current version was tested
+done within a docker container, simplifying the installation and making the
+tool compatible with most linux systems. The current version was tested
 under CentoOS 6.9.
 
-One optional pre-requisite is Deconseq, a pipeline for the removal of human
-reads. It can be downloaded from http://deconseq.sourceforge.net/.
+One optional pre-requisite is Deconseq (http://deconseq.sourceforge.net/),
+a pipeline for the removal of human reads.
 
 ## Installation
 
@@ -105,6 +103,11 @@ fastq file is determined by the `ASSEMBLY_INPUTDIR` in the path_vars file.
 * Hi-C library, used to infer the background model and infer anchor/genome
 pairs. The location of the fastq file is determined by the `HIC_INPUTDIR` in
 the path_vars file.
+
+User-defined parameters in user_vars include:
+* CUTTER_TITLE: The restriction enzyme used.
+* CUTTER_SITE: The cutter site.
+* REMOVE_HUMAN: [T|F] Should remove human reads using Deconseq
 
 Each project is associated with a docker container. The container is setup
 to point to the various paths exposed by the user in the path_vars file.

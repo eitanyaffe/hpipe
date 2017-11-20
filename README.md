@@ -1,9 +1,10 @@
 # hpipe: A tool for the analysis of metagenomic Hi-C data
 
-The hpipe tool processes metagenomic Hi-C maps to infer underlying
+The hpipe tool processes metagenomic Hi-C maps to infer a set of underlying
 genome anchor/union pairs. Each *genome anchor* is a collection contigs that
-are contained in the genomes of one or more related strains, while each
-matching *genome union* is the combined genomes of the strains.
+are part of the genomes of one or more existing strains, while each genome
+anchor has a matching *genome union*, that is the combined genomes of
+those strains.
 
 As a service, the pipeline starts of from raw reads and performs various
 initial stages including quality trimming, removal of adapter sequences
@@ -61,7 +62,7 @@ To verify hpipe has been successfully installed run the following:
 
 2. Infer anchor-union pairs. This should take around 10 minutes.
 ```
-./hpipe.pl step -c config/template/basic.cfg -s pp_basic
+./hpipe.pl run -c config/template/basic.cfg
 ```
 
 3. Close the container.

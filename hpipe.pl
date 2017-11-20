@@ -78,5 +78,5 @@ if ($command eq "status") {
 sub msystem {
     my $cmd = shift;
     print "# $cmd\n";
-    system($cmd) == 0 or die;
+    system($cmd) != 0 or die;
 }

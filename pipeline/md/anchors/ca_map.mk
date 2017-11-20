@@ -142,6 +142,7 @@ $(CA_ANCHOR_GENES): $(CA_ANCHOR_CONTIGS)
 	$(_end)
 
 make_ca: $(CA_ANCHOR_GENES) $(CA_INTER_ANCHOR_MATRIX)
+make_ca_basic: $(CA_ANCHOR_CONTIGS) $(CA_INTER_ANCHOR_MATRIX)
 
 ########################################################################################################################
 # plots

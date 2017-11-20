@@ -250,6 +250,11 @@ ca_matrix:
 	@$(MAKE) m=anchors model MDL_STAGE=final
 	@$(MAKE) m=anchors make_ca
 
+ca_matrix_basic:
+	@$(MAKE) m=anchors coords2fends
+	@$(MAKE) m=anchors model MDL_STAGE=final
+	@$(MAKE) m=anchors make_ca_basic
+
 #####################################################################################################
 # Cluster anchors
 #####################################################################################################
@@ -340,6 +345,11 @@ pp_anchors:
 	@$(MAKE) m=anchors anchor_loop t=make_anchor_groups
 	@$(MAKE) anchor_loop m=anchors t=anchor_stats
 
+# anchor inference
+pp_anchor_basic:
+	@$(MAKE) anchor_loop t=anchors
+	@$(MAKE) ca_loop t=ca_matrix_basic
+
 # flat file structure
 pp_output_basic:
 	@$(MAKE) m=export anchor_loop t=flat_basic
@@ -363,7 +373,7 @@ pp_response_compare:
 pp_all: pp_assembly pp_genes pp_uniref pp_anchors pp_checkm pp_taxa pp_map_se pp_response
 
 # assembly, genes, anchor/union pairs
-pp_basic: pp_assembly pp_genes pp_anchors pp_output_basic
+pp_basic: pp_assembly pp_anchor_basic pp_output_basic
 
 # only up to taxa (no disturbance)
 pp_all_short: pp_assembly pp_genes pp_anchors pp_checkm pp_taxa

@@ -109,8 +109,8 @@ Temporary files are placed under BASE_TMPDIR.
 Output files include:
 
 * contig.fasta and contig.table
- * Metagenomic assembly files.
+  * Metagenomic assembly files.
 
 * X1 sdf swf
- ** X3 sfds sdfg
+  * X3 sfds sdfg
 

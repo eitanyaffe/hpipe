@@ -33,13 +33,13 @@ reads. It can be downloaded from http://deconseq.sourceforge.net/.
 
 1. Select a working directory. Here we use /work/hpipe as an example.
 ```
-%> mkdir -p /work
-%> cd /work
+mkdir -p /work
+cd /work
 ```
 
 2. Get source code from github.
 ```
-%> git clone https://github.com/eitanyaffe/hpipe.git
+git clone https://github.com/eitanyaffe/hpipe.git
 ```
 
 3. Set the environment variable HPIPE_DIR to point to the hpipe dir.
@@ -52,26 +52,35 @@ export HPIPE_DIR=/work/hpipe
 script to some common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
 path.
 
-## Quick Start
+## Quick Start and Usage
 
 To verify hpipe has been successfully installed run the following:
 
 1. Start an hpipe container. Each project requires a separate container.
 ```
-%> ./hpipe.pl start -c config/template/basic.cfg
+./hpipe.pl start -c config/template/basic.cfg
 ```
 
 2. Infer anchor-union pairs. This should take around 10 minutes.
 ```
-%> ./hpipe.pl step -c config/template/basic.cfg -s pp_basic
+./hpipe.pl step -c config/template/basic.cfg -s pp_basic
 ```
 
 3. Close the container.
 ```
-%> ./hpipe.pl stop -c config/template/basic.cfg
+./hpipe.pl stop -c config/template/basic.cfg
 ```
 
 Output files should be generated under projects/project1/output.
+
+To run hpipe create a configuration directory based of the original template or
+some other pre-existing template. For example:
+```
+cp -r config/template config/my_project
+```
+
+Then edit the various files inside the configuration directory (see details below)
+and run as above.
 
 ## Input and Output
 
@@ -130,6 +139,6 @@ Output files include:
   * anchor: anchor indentifier, if none equals 0
   * abundance_bin: abundance bin
   * frag_len_bin: fragment length bin
-* fragment_length.f, abundance.f: correction matrices
-* fragment_length.bins, abundance.bins: ranges of the bins
-* prior: constant prior probability value
+* model/fragment_length.f, model/abundance.f: correction matrices
+* model/fragment_length.bins, model/abundance.bins: ranges of the bins
+* model/prior: constant prior probability value

@@ -108,9 +108,28 @@ Temporary files are placed under BASE_TMPDIR.
 
 Output files include:
 
-* contig.fasta and contig.table
-  * Metagenomic assembly files.
-
-* X1 sdf swf
-  * X3 sfds sdfg
-
+* contig.fasta: fasta file of the metagenomic assembly files.
+* contig.table: table with all contigs and their length (in bp)
+* anchor.table: table with all genome anchors. Fields:
+  * contig: contig identifier.
+  * anchor: anchor identifier.
+* contig_anchor.table: table with all genome unions. Fields:
+  * contig: contig identifier.
+  * anchor: anchor identifier.
+  * observed: number of contacts between contig and anchor.
+  * expected: number of expected spurious contacts between contig and anchor.
+  * score: enrichment of observed the expected, in log_10.
+* model/fend.table: table with fragment ends. Fields:
+  * fend: fragment end identifier
+  * frag: fragment identifier
+  * strand: strand of fragment end
+  * contig: contig identifier
+  * coord: coordinate of fragment end
+  * frag_len: length of fragment
+  * abundance: abundance of contig
+  * anchor: anchor indentifier, if none equals 0
+  * abundance_bin: abundance bin
+  * frag_len_bin: fragment length bin
+* fragment_length.f, abundance.f: correction matrices
+* fragment_length.bins, abundance.bins: ranges of the bins
+* prior: constant prior probability value

@@ -340,13 +340,17 @@ pp_anchors:
 	@$(MAKE) m=anchors anchor_loop t=make_anchor_groups
 	@$(MAKE) anchor_loop m=anchors t=anchor_stats
 
+# flat file structure
+pp_output_basic:
+	@$(MAKE) m=export anchor_loop t=flat_basic
+
 pp_checkm:
 	@$(MAKE) anchor_loop m=anchors t=make_checkm
 
 pp_taxa:
 	@$(MAKE) anchor_loop t=taxa
 
-# single ended (no preproc) mapping, for temporal shot gun
+# single ended (no preproc) mapping, for temporal shot gun2
 pp_map_se:
 	@$(MAKE) se_map_loop t=map_se
 
@@ -358,8 +362,8 @@ pp_response_compare:
 
 pp_all: pp_assembly pp_genes pp_uniref pp_anchors pp_checkm pp_taxa pp_map_se pp_response
 
-# only up to taxa (no disturbance)
-pp_basic: pp_assembly pp_genes pp_anchors
+# assembly, genes, anchor/union pairs
+pp_basic: pp_assembly pp_genes pp_anchors pp_output_basic
 
 # only up to taxa (no disturbance)
 pp_all_short: pp_assembly pp_genes pp_anchors pp_checkm pp_taxa

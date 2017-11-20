@@ -26,3 +26,22 @@ export=function(odir, ...)
         }
     }
 }
+
+# rename specific fields
+copy.table=function(ifn, ofn, fields.in, fields.out)
+{
+    if (length(fields.in) != length(fields.out))
+        stop(paste("in and out fields must be the same length"))
+
+    df = load.table(ifn)
+    for (field in fields.in) {
+        if (!is.element(field, names(df))) {
+            stop(paste("field does not exist:", field))
+        }
+    }
+
+    df.out = df[,match(fields.in, names(df))]
+    colnames(df.out) = fields.out
+
+    save.table(df.out, ofn)
+}

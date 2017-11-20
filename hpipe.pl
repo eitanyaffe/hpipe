@@ -14,6 +14,7 @@ if ($#ARGV == -1) {
 	print STDERR "  stop: stop hpipe container\n";
 	print STDERR "  restart: stop and start hpipe container\n";
 	print STDERR "  status: check status of docker container\n";
+	print STDERR "  print: convert hpipe name to filename\n";
 	print STDERR "  step: execute step\n";
 	print STDERR "  drystep: show which targets will be generated if step is executed\n";
 	print STDERR "options\n";
@@ -25,9 +26,11 @@ if ($#ARGV == -1) {
 my $command = $ARGV[0];
 my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/template/basic.cfg";
 my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
+my $name = "CONTIG_TABLE";
 
 GetOptions (
     "c=s" => \$cfg,
+    "v=s" => \$name,
     "s=s" => \$step);
 
 my $dir = dirname($cfg);
@@ -49,12 +52,17 @@ if ($command eq "restart") {
     msystem("bash ./docker/dexec.sh $dir make c=config/$fn init");
 }
 
-if ($command eq "step") {
+if ($command eq "run") {
     print "step: $step\n";
-    msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step");
+    msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step > log 2>&1");
 }
 
-if ($command eq "drystep") {
+if ($command eq "print") {
+    print "name: $name\n";
+    msystem("bash ./docker/dexec.sh $dir make c=config/$fn t=print v=$name | grep '^v='");
+}
+
+if ($command eq "dryrun") {
     print "step: $step\n";
     msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step -n | grep START");
 }

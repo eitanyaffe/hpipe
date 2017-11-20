@@ -4,7 +4,7 @@
 #####################################################################################################
 
 units:=download.mk simulate.mk
-preqs_var:=GENEBANK_TABLE DOWNLOAD_INPUT_TABLE
+preqs_var:=
 $(call _register_module,ref,$(units),global,$(preqs_var))
 
 #####################################################################################################

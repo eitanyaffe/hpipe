@@ -117,7 +117,7 @@ to point to the various paths exposed by the user in the path_vars file.
 
 The pipeline outputs all files under `BASE_OUTDIR`, defined in path_vars.
 The output of each project is placed under `BASE_OUTDIR/PROJECT_ID/output`.
-Temporary files are placed under BASE_TMPDIR.
+Temporary files are placed under `BASE_TMPDIR`.
 
 Output files include:
 

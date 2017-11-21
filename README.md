@@ -110,9 +110,6 @@ User-defined parameters in user_vars include:
 * CUTTER_SITE: The cutter site.
 * REMOVE_HUMAN: [T|F] Should remove human reads using Deconseq
 
-Each project is associated with a docker container. The container is setup
-to point to the various paths exposed by the user in the path_vars file.
-
 ### Output
 
 The pipeline outputs all files under `BASE_OUTDIR`, defined in path_vars.

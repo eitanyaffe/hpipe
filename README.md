@@ -133,16 +133,16 @@ Output files include:
   * expected: number of expected spurious contacts between contig and anchor.
   * score: enrichment of observed the expected, in log_10.
 * model/fend.table: table with fragment ends, fields:
-  * fend: fragment end identifier
-  * frag: fragment identifier
-  * strand: strand of fragment end
-  * contig: contig identifier
-  * coord: coordinate of fragment end
-  * frag_len: length of fragment
-  * abundance: abundance of contig
-  * anchor: anchor indentifier, if none equals 0
-  * abundance_bin: abundance bin
-  * frag_len_bin: fragment length bin
-* model/fragment_length.f, model/abundance.f: correction matrices
-* model/fragment_length.bins, model/abundance.bins: ranges of the bins
-* model/prior: constant prior probability value
+  * fend: fragment end identifier.
+  * frag: fragment identifier.
+  * strand: strand of fragment end.
+  * contig: contig identifier.
+  * coord: coordinate of fragment end.
+  * frag_len: length of fragment.
+  * abundance: abundance of contig.
+  * anchor: anchor indentifier, if none equals 0.
+  * abundance_bin: abundance bin.
+  * frag_len_bin: fragment length bin.
+* model/fragment_length.f, model/abundance.f: correction matrices.
+* model/fragment_length.bins, model/abundance.bins: ranges of the bins.
+* model/prior: constant prior probability value.

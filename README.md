@@ -7,13 +7,12 @@ anchor has a matching *genome union*, that is the combined genomes of
 those strains.
 
 As a service, the pipeline starts of from raw reads and performs various
-initial stages including quality trimming, removal of adapter sequences
+initial steps including quality trimming, removal of adapter sequences
 and metagenomic assembly. The core functionality of the pipeline is
 (1) to infer a background model of spurious contacts between contigs that
-belong to different cells (termed *non-linked*) and (2) to infer a
-collection of non-linked contig sets, termed anchors.
+belong to different cells, and (2) to infer a set of anchors.
 
-The pipeline was developed by Eitan Yaffe, at David Relman's lab, Stanford
+The tool was developed by Eitan Yaffe, at David Relman's lab, Stanford
 University School of Medicine. It is distributed under the GNU General
 Public License v3.0. If you have questions or comments please contact Eitan
 Yaffe at eitan.yaffe@gmail.com.
@@ -21,12 +20,13 @@ Yaffe at eitan.yaffe@gmail.com.
 ## Pre-requisites
 
 The tool requires docker (https://www.docker.com), perl and bash. All work is
-done within a docker container, simplifying the installation and making the
+performed within a docker container, simplifying the installation and making the
 tool compatible with most linux systems. The current version was tested
 under CentoOS 6.9.
 
-One optional pre-requisite is Deconseq (http://deconseq.sourceforge.net/),
-a pipeline for the removal of human reads.
+One optional pre-requisite is DeconSeq (http://deconseq.sourceforge.net/),
+a pipeline for the removal of human reads. By default the tool does not remove
+human reads.
 
 ## Installation
 
@@ -42,30 +42,30 @@ git clone https://github.com/eitanyaffe/hpipe.git
 ```
 
 3. Set the environment variable HPIPE_DIR to point to the hpipe dir.
-For example, if using bash, add the following line to your .bashrc:
+For example, if using bash, you can add the following line to your .bashrc:
 ```
 export HPIPE_DIR=/work/hpipe
 ```
 
-4. Add the script `$HPIPE_DIR/hpipe.pl` to your path. To do that, either copy the
-script to some common directory (e.g. /usr/local/bin) or add $HPIPE_DIR to your
+4. Add the script `$HPIPE_DIR/hpipe.pl` to your path. To do that either copy the
+script to some common directory (e.g. /usr/local/bin), or add $HPIPE_DIR to your
 path.
 
 ## Quick Start and Usage
 
-To verify hpipe has been successfully installed run the following:
+To verify hpipe has been successfully installed run the following commands:
 
 1. Start an hpipe container. Each project requires a separate container.
 ```
 ./hpipe.pl start -c config/template/basic.cfg
 ```
 
-2. Infer anchor-union pairs. This should take around 10 minutes.
+2. Infer anchor-union pairs. This should take less than 10 minutes for the test dataset.
 ```
 ./hpipe.pl run -c config/template/basic.cfg
 ```
 
-3. Close the container.
+3. When done close the container.
 ```
 ./hpipe.pl stop -c config/template/basic.cfg
 ```

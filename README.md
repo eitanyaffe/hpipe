@@ -47,7 +47,7 @@ For example, if using bash, you can add the following line to your .bashrc:
 export HPIPE_DIR=/work/hpipe
 ```
 
-4. Add the script `$HPIPE_DIR/hpipe.pl` to your path. To do that either copy the
+4. Add the script `$HPIPE_DIR/hpipe` to your path. To do that either copy the
 script to some common directory (e.g. /usr/local/bin), or add $HPIPE_DIR to your
 path.
 
@@ -57,17 +57,17 @@ To verify hpipe has been successfully installed run the following commands:
 
 1. Start an hpipe container. Each project requires a separate container.
 ```
-./hpipe.pl start -c config/template/basic.cfg
+hpipe start -c config/template/basic.cfg
 ```
 
 2. Infer anchor-union pairs. This should take less than 10 minutes for the test dataset.
 ```
-./hpipe.pl run -c config/template/basic.cfg
+hpipe run -c config/template/basic.cfg
 ```
 
 3. When done close the container.
 ```
-./hpipe.pl stop -c config/template/basic.cfg
+hpipe stop -c config/template/basic.cfg
 ```
 
 Output files should be generated under projects/project1/output.

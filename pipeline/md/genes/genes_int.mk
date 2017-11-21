@@ -59,7 +59,8 @@ UNIPROT_XML_IFN?=/relman01/shared/databases/UniProt/versions/2016_10/uniprot_spr
 UNIPARC_XML_IFN?=/relman03/work/users/eitany/uniparc_all.xml
 
 # uniref table
-UNIREF_TABLE_DIR?=$(BASE_OUTDIR)/gene_catalog/$(GENE_REF_ID)
+UNIREF_TABLE_BASE_DIR?=$(BASE_OUTDIR)/gene_catalog
+UNIREF_TABLE_DIR?=$(UNIREF_TABLE_BASE_DIR)/$(GENE_REF_ID)
 UNIREF_TABLE?=$(UNIREF_TABLE_DIR)/table
 UNIREF_GENE_TABLE?=$(UNIREF_TABLE_DIR)/genes
 

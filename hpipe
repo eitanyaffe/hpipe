@@ -27,6 +27,7 @@ my $command = $ARGV[0];
 my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/template/basic.cfg";
 my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
 my $name = "CONTIG_TABLE";
+my $image = "eitanyaffe/hpipe:v1.01";
 
 GetOptions (
     "c=s" => \$cfg,
@@ -38,7 +39,7 @@ my $fn = basename($cfg);
 print "config file: $cfg\n";
 
 if ($command eq "start") {
-    msystem("bash ./docker/drun.sh $dir");
+    msystem("bash ./docker/drun.sh $dir $image");
     msystem("bash ./docker/dexec.sh $dir make c=config/$fn init");
 }
 
@@ -48,7 +49,7 @@ if ($command eq "stop") {
 
 if ($command eq "restart") {
     msystem("bash ./docker/dremove.sh $dir");
-    msystem("bash ./docker/drun.sh $dir");
+    msystem("bash ./docker/drun.sh $dir $image");
     msystem("bash ./docker/dexec.sh $dir make c=config/$fn init");
 }
 
@@ -78,5 +79,6 @@ if ($command eq "status") {
 sub msystem {
     my $cmd = shift;
     print "# $cmd\n";
-    system($cmd) != 0 or die;
+    my $rc = system($cmd);
+    $rc == 0 or die $rc;
 }

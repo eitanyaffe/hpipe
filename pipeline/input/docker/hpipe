@@ -46,7 +46,7 @@ ENV SICKLE /tools/sickle/sickle
 ENV MINIA_VERSION v2.0.7-bin-Linux
 ENV MINIA /tools/minia/minia-${MINIA_VERSION}/bin/minia
 WORKDIR /tools/minia
-RUN wget https://github.com/GATB/minia/releases/download/v2.0.7/minia-${MINIA_VERSION}.tar.gz && tar xvf minia-${MINIA_VERSION}.tar.gz 
+RUN wget https://github.com/GATB/minia/releases/download/v2.0.7/minia-${MINIA_VERSION}.tar.gz && tar xvf minia-${MINIA_VERSION}.tar.gz
 
 # install MUMmer
 ENV MUMMER_VERSION 3.23
@@ -57,14 +57,6 @@ tar xvf MUMmer${MUMMER_VERSION}.tar.gz
 
 # bwa
 ENV BWA_BIN bwa
-
-# MetaGeneMark (gene prediction)
-WORKDIR /tools/mgm
-COPY gm_key_64.gz /tools/mgm/gm_key_64.gz
-COPY MetaGeneMark_linux_64.tar.gz /tools/mgm/MetaGeneMark_linux_64.tar.gz
-RUN gunzip gm_key_64.gz && tar xvf MetaGeneMark_linux_64.tar.gz && \
-mv gm_key_64 MetaGeneMark_linux_64/mgm
-ENV MGM /tools/mgm/MetaGeneMark_linux_64/mgm
 
 # diamond (rapid blast)
 ENV DIAMOND_VERSION v0.9.10

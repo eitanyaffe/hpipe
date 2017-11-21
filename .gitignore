@@ -5,3 +5,5 @@ bin.*
 Rplots.pdf
 *.gz
 *.pdf
+local_config
+log

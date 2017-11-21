@@ -372,7 +372,7 @@ pp_response_compare:
 
 pp_all: pp_assembly pp_genes pp_uniref pp_anchors pp_checkm pp_taxa pp_map_se pp_response
 
-# assembly, genes, anchor/union pairs
+# assembly and anchor/union pairs only
 pp_basic: pp_assembly pp_anchor_basic pp_output_basic
 
 # only up to taxa (no disturbance)
@@ -467,5 +467,12 @@ pp_gene_sharing:
 	@$(MAKE) m=genes gr_all
 	@$(MAKE) m=anchors gs_all
 
+#####################################################################################################
+# docker stuff
+#####################################################################################################
+
 pp_docker_image:
 	@$(MAKE) m=docker docker_build
+
+pp_docker_push:
+	@$(MAKE) m=docker docker_push

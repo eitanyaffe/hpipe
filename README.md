@@ -70,7 +70,7 @@ hpipe run -c config/template/basic.cfg
 hpipe stop -c config/template/basic.cfg
 ```
 
-Output files should be generated under projects/project1/output.
+Output files should be generated under `$HPIPE_DIR/projects/project1/output`.
 
 To run hpipe create a configuration directory based of the original template or
 some other pre-existing template. For example:

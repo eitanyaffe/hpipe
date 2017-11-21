@@ -106,9 +106,9 @@ pairs. The location of the fastq file is determined by the `HIC_INPUTDIR` in
 the path_vars file.
 
 User-defined parameters in user_vars include:
-* CUTTER_TITLE: The restriction enzyme used.
-* CUTTER_SITE: The cutter site.
-* REMOVE_HUMAN: [T|F] Should remove human reads using Deconseq
+* `CUTTER_TITLE`: The restriction enzyme used.
+* `CUTTER_SITE`: The cutter site.
+* `REMOVE_HUMAN`: [T|F] Should remove human reads using Deconseq.
 
 ### Output
 

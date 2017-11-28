@@ -13,10 +13,10 @@ if ($#ARGV == -1) {
 	print STDERR "  start: start hpipe container\n";
 	print STDERR "  stop: stop hpipe container\n";
 	print STDERR "  restart: stop and start hpipe container\n";
+	print STDERR "  run: execute step\n";
 	print STDERR "  status: check status of docker container\n";
 	print STDERR "  print: convert hpipe name to filename\n";
-	print STDERR "  step: execute step\n";
-	print STDERR "  drystep: show which targets will be generated if step is executed\n";
+	print STDERR "  dry: show which targets will be generated if step is executed\n";
 	print STDERR "options\n";
 	print STDERR " -c: config file\n";
 	print STDERR " -s: step\n";
@@ -28,6 +28,8 @@ my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/template/ba
 my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
 my $name = "CONTIG_TABLE";
 my $image = "eitanyaffe/hpipe:v1.01";
+
+$command eq "start" || $command eq "stop" || $command eq "restart" || $command eq "status" || $command eq "print" || $command eq "run" || $command eq "dry" || $command eq "debug" || die "unknown command: $command";
 
 GetOptions (
     "c=s" => \$cfg,
@@ -55,7 +57,8 @@ if ($command eq "restart") {
 
 if ($command eq "run") {
     print "step: $step\n";
-    msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step > log 2>&1");
+    # msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step > log 2>&1");
+    msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step");
 }
 
 if ($command eq "print") {
@@ -63,7 +66,7 @@ if ($command eq "print") {
     msystem("bash ./docker/dexec.sh $dir make c=config/$fn t=print v=$name | grep '^v='");
 }
 
-if ($command eq "dryrun") {
+if ($command eq "dry") {
     print "step: $step\n";
     msystem("bash ./docker/dexec.sh $dir make c=config/$fn $step -n | grep START");
 }

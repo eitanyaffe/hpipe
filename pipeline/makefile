@@ -376,7 +376,7 @@ pp_all: pp_assembly pp_genes pp_uniref pp_anchors pp_checkm pp_taxa pp_map_se pp
 pp_basic: pp_assembly pp_anchor_basic pp_output_basic
 
 # only up to taxa (no disturbance)
-pp_all_short: pp_assembly pp_genes pp_anchors pp_checkm pp_taxa
+pp_regress: pp_assembly pp_genes pp_anchors pp_checkm pp_taxa
 
 # use existing anchor set
 pp_use_anchors:

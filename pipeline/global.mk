@@ -78,8 +78,8 @@ DIAMOND_BIN?=diamond
 
 ############## CHECKM ##############
 
-CHECKM?=~/work/python/local2/bin/checkm
-
+LOCAL_PYTHON_DIR?=/home/eitany/work/python/local2/bin
+CHECKM?=$(LOCAL_PYTHON_DIR)/checkm
 
 ############## BLAST ##############
 

@@ -33,16 +33,7 @@ MAX_JOBS?=40
 DTYPE?=par
 
 #####################################################################################################
-# external files
-#####################################################################################################
-
-# NCBI files, downloaded from ftp://ftp.ncbi.nlm.nih.gov/genomes/ASSEMBLY_REPORTS/
-# First line (which has an #) was removed manually
-# GENEBANK_DIR?=/relman01/shared/databases/NCBI/Genomes/Feb_2017
-GENEBANK_TABLE?=$(GENEBANK_DIR)/assembly_summary_genbank.txt.2
-
-#####################################################################################################
-# exterior tools
+# paths need to be defined if working directly, without a docker image
 #####################################################################################################
 
 ############## PREPROC ##############
@@ -59,31 +50,16 @@ DECONSEQ_DIR?=/relman01/shared/tools/deconseq-standalone-0.4.3/
 ############## ASSEMBLY ##############
 
 # assembly
-MEGAHIT?=/home/eitany/work/download/megahit-master/megahit
-MINIA?=/home/eitany/work/minia/bin/minia
+MEGAHIT?=/home/dethlefs/bin/megahit
 
 # mummer path
 MUMMER_DIR?=/home/eitany/work/download/MUMmer3.23
-
-# bowtie
-BOWTIE_BASE=/usr/local/bin
-BOWTIE_BUILD_BIN?=$(BOWTIE_BASE)/bowtie-build
-BOWTIE_BIN?=$(BOWTIE_BASE)/bowtie
 
 # bwa
 BWA_BIN?=/home/eitany/work/download/bwa-0.7.12/bwa
 
 # diamond
 DIAMOND_BIN?=diamond
-
-############## CHECKM ##############
-
-LOCAL_PYTHON_DIR?=/home/eitany/work/python/local2/bin
-CHECKM?=$(LOCAL_PYTHON_DIR)/checkm
-
-############## BLAST ##############
-
-USEARCH_BIN?=usearch8
 
 #####################################################################################################
 # dataset entity
@@ -119,14 +95,6 @@ ORDER_DIR?=$(ANCHOR_DIR)/order
 ANCHOR_CLUSTER_TABLE?=$(ORDER_DIR)/identity_$(SET_ID)
 
 #####################################################################################################
-# uniref
-#####################################################################################################
-
-GENE_REF_IFN?=$(GENE_REF_BASEDIR)/uniref100.fasta
-GENE_REF_XML_IFN?=$(GENE_REF_BASEDIR)/uniref100.xmlx
-GENE_REF_ID?=uniref100_2015_12
-
-#####################################################################################################
 # transient files
 #####################################################################################################
 
@@ -134,25 +102,3 @@ GENE_REF_ID?=uniref100_2015_12
 # - preproc: keep final copy
 # - mapping: keep filtered results
 REMOVE_TRANSIENT?=T
-
-#####################################################################################################
-# figures
-#####################################################################################################
-
-BASE_FIGURE_DIR?=$(BASE_OUTDIR)/figures/$(PROJECT_ID)
-
-# for various comparisons
-SET_TITLE?=basic
-SET_FIGURE_DIR?=$(BASE_FIGURE_DIR)/set_compare/$(SET_TITLE)
-
-# for assembly
-FIGURE_DIR?=$(BASE_FIGURE_DIR)/assembly_$(ASSEMBLY_ID)
-
-LIB_FIGURE_DIR?=$(FIGURE_DIR)/lib_$(LIB_ID)
-MAP_FIGURE_DIR=$(LIB_FIGURE_DIR)
-GENE_FIGURE_DIR?=$(FIGURE_DIR)/genes
-ANCHOR_FIGURE_DIR?=$(MAP_FIGURE_DIR)/anchor_$(ANCHOR)_$(ANCHOR_LABEL)
-
-PP_COLS?="\#771155 \#AA4488 \#CC99BB \#114477 \#4477AA \#77AADD \#117777 \#44AAAA \#77CCCC \#117744 \#44AA77 \#88CCAA \#777711 \#AAAA44 \#DDDD77 \#774411 \#AA7744 \#DDAA77 \#771122 \#AA4455 \#DD7788"
-LIB_COLS?="\#771155 \#AA4488 \#CC99BB \#114477 \#4477AA \#77AADD \#117777 \#44AAAA \#77CCCC \#117744 \#44AA77 \#88CCAA \#777711 \#AAAA44 \#DDDD77 \#774411 \#AA7744 \#DDAA77 \#771122 \#AA4455 \#DD7788"
-ASSEMBLY_COLS?="\#771155 \#AA4488 \#CC99BB \#114477 \#4477AA \#77AADD \#117777 \#44AAAA \#77CCCC \#117744 \#44AA77 \#88CCAA \#777711 \#AAAA44 \#DDDD77 \#774411 \#AA7744 \#DDAA77 \#771122 \#AA4455 \#DD7788"

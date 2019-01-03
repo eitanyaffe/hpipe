@@ -23,6 +23,15 @@ IMAGE_NAME=hpipe
 D_EXEC_OPTS="-ti"
 CONTAINER_NAME=${IMAGE_NAME}_${PROJECT_ID}_${USER}
 
-CMD="docker exec ${D_EXEC_OPTS} -u ${USER} ${CONTAINER_NAME} $COMMAND"
+case "$(uname -s)" in
+   Darwin)
+     USERPARAMS=
+     ;;
+   *)
+     USERPARAMS=-u ${USER} ${PERMISSIONS_PATHS}
+     ;;
+esac
+
+CMD="docker exec ${D_EXEC_OPTS} ${USERPARAMS} ${CONTAINER_NAME} $COMMAND"
 echo "#" ${CMD}
 ${CMD}

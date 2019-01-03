@@ -43,12 +43,14 @@ PERMISSIONS_PATHS="-v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow -v /etc
 CONTAINER_NAME=${IMAGE_SHORT_NAME}_${PROJECT_ID}_${USER}
 HOST=${IMAGE_SHORT_NAME}_${PROJECT_ID}
 
-UNAME=`uname -s`
-if [ $UNAME == "Darwin" ]
-   USERPARAMS=-u ${USER} ${PERMISSIONS_PATHS}
-else
-   USERPARAMS=
-fi
+case "$(uname -s)" in
+   Darwin)
+     USERPARAMS=
+     ;;
+   *)
+     USERPARAMS=-u ${USER} ${PERMISSIONS_PATHS}
+     ;;
+esac
 
 CMD="docker run ${D_START_OPTS} -d -h ${HOST} ${USERPARAMS} ${IO_PATHS} --name ${CONTAINER_NAME} ${IMAGE_NAME}"
 echo "#" ${CMD}

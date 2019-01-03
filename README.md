@@ -86,12 +86,12 @@ The directory contains 3 files:
 
 ### Input
 
-The pipeline uses as input two raw reads of DNA libraries.
+The main input are these two DNA libraries:
 
-* Assembly library, used to generate a metagenomic assembly. The location of the
+* Assembly library: Used to generate a metagenomic assembly. The location of the
 paired fastq files is determined by the `ASSEMBLY_INPUTDIR` in the path_vars file.
 
-* Hi-C library, used to infer the background model and infer anchor/genome
+* Hi-C library: Used to infer the background model and infer anchor/genome
 pairs. The location of the paired fastq files is determined by the `HIC_INPUTDIR` in
 the path_vars file.
 

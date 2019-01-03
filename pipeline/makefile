@@ -85,7 +85,7 @@ $(call _module_root,hpipe_export)
 
 # c: config file
 # NOTE: customize after modules loaded since we use module variables for class functions
-c?=config/ref/n5.cfg
+c?=
 include $(c)
 
 $(call _set_user_title,config: $(c))
@@ -155,6 +155,8 @@ anchors:
 	@$(MAKE) m=anchors model MDL_STAGE=initial
 	@$(MAKE) m=anchors trim_anchors
 	@$(MAKE) m=anchors model MDL_STAGE=final
+	@$(MAKE) m=anchors cell_mdl MDL_STAGE=final_cellular
+	@$(MAKE) m=anchors model_cell MDL_STAGE=final_cellular
 
 #####################################################################################################
 # Compute contig/anchor matrix

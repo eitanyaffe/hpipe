@@ -1,4 +1,4 @@
-FROM eitanyaffe/hpipe-base
+FROM eitanyaffe/hpipe-base:v1.1
 
 ENV MAKESHIFT_ROOT /ms_root
 

@@ -74,12 +74,11 @@ Output files are generated under `$HPIPE_DIR/output/project1/result`.
 
 ## Input and Output
 
-Input and output files and directories are defined using a single configuration
-directory per project, see config/template for an example. To start a new project
-you can copy the directory config/template and modify the various files there,
-as explained below.
+Input and output paths are defined using a single configuration directory, 
+see config/template for an example. To start a new project copy 
+and modify the directory config/template, as explained below.
 
-The configuration directory contains 3 files:
+The directory contains 3 files:
 * project_id: Unique string identifier of project `PROJECT_ID`.
 * path_vars: Paths to input and output directories.
 * user_vars: Customizable parameters.

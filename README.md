@@ -2,15 +2,15 @@
 
 The hpipe tool processes metagenomic Hi-C maps to infer a set of underlying
 genome anchor/union pairs. Each *genome anchor* is a collection contigs that
-are part of the genomes of one or more existing strains, while each genome
+are part of the genomes of one or more residing strains, while each genome
 anchor has a matching *genome union*, that is the combined genomes of
 those strains.
 
-As a service, the pipeline starts of from raw reads and performs various
-initial steps including quality trimming, removal of adapter sequences
-and metagenomic assembly. The core functionality of the pipeline is
-(1) to infer a background model of spurious contacts between contigs that
-belong to different cells, and (2) to infer a set of anchors.
+The pipeline recieves as input a shotgun libary and a Hi-C library,
+and performs various initial steps including quality trimming, removal of
+adapter sequences and metagenomic assembly. The core functionality of the
+pipeline is (1) to infer a background model of spurious contacts between
+contigs that belong to different cells, and (2) to infer a set of anchors.
 
 The tool was developed by Eitan Yaffe, at David Relman's lab, Stanford
 University School of Medicine. It is distributed under the GNU General
@@ -19,21 +19,20 @@ Yaffe at eitan.yaffe@gmail.com.
 
 ## Pre-requisites
 
-The tool requires docker (https://www.docker.com), perl and bash. All work is
-performed within a docker container, simplifying the installation and making the
-tool compatible with most linux systems. The current version was tested
-under CentoOS 6.9.
+The tool requires docker, perl and bash. All work is performed within a
+docker container, simplifying the installation and making the tool
+compatible with most linux systems. The current version was tested under
+CentoOS 7.0.
 
 One optional pre-requisite is DeconSeq (http://deconseq.sourceforge.net/),
-a pipeline for the removal of human reads. By default the tool does not remove
-human reads.
+which removes human reads. By default human reads are not removed.
 
 ## Installation
 
-1. Select a working directory. Here we use /work/hpipe as an example.
+1. Create a working directory. Here we use ~/work as an example.
 ```
-mkdir -p /work
-cd /work
+mkdir -p ~/work
+cd ~/work
 ```
 
 2. Get source code from github.
@@ -44,7 +43,7 @@ git clone https://github.com/eitanyaffe/hpipe.git
 3. Set the environment variable HPIPE_DIR to point to the hpipe dir.
 For example, if using bash, you can add the following line to your .bashrc:
 ```
-export HPIPE_DIR=/work/hpipe
+export HPIPE_DIR=~/work/hpipe
 ```
 
 4. Add the script `$HPIPE_DIR/hpipe` to your path. To do that either copy the
@@ -53,14 +52,14 @@ path.
 
 ## Quick Start and Usage
 
-To verify hpipe has been successfully installed run the following commands:
+Check hpipe on a test dataset:
 
-1. Start an hpipe container. Each project requires a separate container.
+1. Start an hpipe docker container.
 ```
 hpipe start -c config/template/basic.cfg
 ```
 
-2. Infer anchor-union pairs. This should take less than 10 minutes for the test dataset.
+2. Infer anchor-union pairs. This takes ~20 minutes on an 1TB/80-core machine.
 ```
 hpipe run -c config/template/basic.cfg
 ```
@@ -70,23 +69,14 @@ hpipe run -c config/template/basic.cfg
 hpipe stop -c config/template/basic.cfg
 ```
 
-Output files should be generated under `$HPIPE_DIR/projects/project1/output`.
-
-To run hpipe create a configuration directory based off the original template or
-some other pre-existing template. For example:
-```
-cp -r config/template config/my_project
-```
-
-Then edit the various files inside the configuration directory (see details below)
-and run as above.
+Output files are generated under `$HPIPE_DIR/output/project1/result`.
 
 ## Input and Output
 
 Input and output files and directories are defined using a single configuration
-directory per each project.  You can see an example of a configuration directory
-under config/template. To start a new project please copy config/template
-and modify the various files there.
+directory per project, see config/template for an example. To start a new project
+you can copy the directory config/template and modify the various files there,
+as explained below.
 
 The configuration directory contains 3 files:
 * project_id: Unique string identifier of project `PROJECT_ID`.

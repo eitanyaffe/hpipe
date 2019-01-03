@@ -11,8 +11,53 @@
 SET_TITLE=title1
 
 # Restriction enzyme
-CUTTER_TITLE?=DpnII
-CUTTER_SITE?=GATC
+CUTTER_TITLE=DpnII
+CUTTER_SITE=GATC
 
 # remove human reads using deconseq?
 REMOVE_HUMAN=F
+
+##########################################################################################
+# genome anchor parameters
+##########################################################################################
+
+# each contig within an anchor must satisfy the following
+
+# maximal number of supporting contacts with other anchors
+AMAP_MULTI_MIN_CONTACTS=5
+
+# maximal contig-anchor contact enrichment with other anchors
+AMAP_MULTI_MIN_ENRICHMENT=0.2
+
+# false discovery probability
+AMAP_TRIM_FDR=0.000001
+
+# select abundance range up to factor*weighted.sd(abundance) from the weighed.mean(abundance)
+AMAP_TRIM_COVERAGE_FACTOR=1.5
+
+# omit all anchors for which sd of selected abundances is too large (considered mixed clusters)
+AMAP_TRIM_COVERAGE_MAX_SD=0.2
+
+# minimal anchor size (bp)
+AMAP_MIN_LENGTH=200000
+
+##########################################################################################
+# genome union parameters
+##########################################################################################
+
+# each contig-anchor pair must satisfy all conditions below
+
+# minimal number of supporting contig-anchor contacts
+CA_MIN_CONTACTS=8
+
+# minimal contig-anchor contact enrichment: log10(obs/exp)
+CA_MIN_ENRICHMENT=1
+
+# minimal contig support, i.e. the fraction of associated contig fragment-ends
+CA_CONTIG_COVERAGE=0.5
+
+# minimal anchor support, i.e. the number of associated contigs within anchor
+CA_MIN_ANCHOR_CONTIGS=2
+
+# false discovery probability
+CA_ASSIGN_FDR=0.000001

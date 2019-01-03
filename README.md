@@ -1,7 +1,7 @@
 # hpipe: Microbial genome inference from Hi-C data
 
-The hpipe tool processes metagenomic Hi-C data, and infers underlying genomes. 
-The output are pairs of genome anchors and genome unions. Each *genome anchor* 
+The hpipe tool processes metagenomic Hi-C data, and infers underlying genomes.
+The output are pairs of genome anchors and genome unions. Each *genome anchor*
 is a collection contigs that are part of the genomes of one or more residing strains.
 Each genome anchor has a matching *genome union*, that is the combined genomes of
 the anchor-related strains, including shared elements such as plasmids.
@@ -74,8 +74,8 @@ Output files are generated under `$HPIPE_DIR/output/project1/result`.
 
 ## Input and Output
 
-Input and output paths are defined using a single configuration directory, 
-see config/template for an example. To start a new project copy 
+Input and output paths are defined using a single configuration directory,
+see config/template for an example. To start a new project copy
 and modify the directory config/template, as explained below.
 
 The directory contains 3 files:
@@ -99,6 +99,8 @@ User-defined parameters in user_vars include:
 * `CUTTER_TITLE`: The restriction enzyme used.
 * `CUTTER_SITE`: The cutter site.
 * `REMOVE_HUMAN`: [T|F] Should remove human reads using Deconseq.
+
+See the file user_vars for more parameters and their description.
 
 ### Output
 

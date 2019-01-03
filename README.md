@@ -50,7 +50,7 @@ export HPIPE_DIR=~/work/hpipe
 script to some common directory (e.g. /usr/local/bin), or add $HPIPE_DIR to your
 path.
 
-## Quick Start and Usage
+## Quick Start
 
 Check hpipe on a test dataset:
 
@@ -89,10 +89,10 @@ The configuration directory contains 3 files:
 The pipeline uses as input two raw reads of DNA libraries.
 
 * Assembly library, used to generate a metagenomic assembly. The location of the
-fastq file is determined by the `ASSEMBLY_INPUTDIR` in the path_vars file.
+paired fastq files is determined by the `ASSEMBLY_INPUTDIR` in the path_vars file.
 
 * Hi-C library, used to infer the background model and infer anchor/genome
-pairs. The location of the fastq file is determined by the `HIC_INPUTDIR` in
+pairs. The location of the paired fastq files is determined by the `HIC_INPUTDIR` in
 the path_vars file.
 
 User-defined parameters in user_vars include:
@@ -103,7 +103,7 @@ User-defined parameters in user_vars include:
 ### Output
 
 The pipeline outputs all files under `BASE_OUTDIR`, defined in path_vars.
-The output of each project is placed under `BASE_OUTDIR/PROJECT_ID/output`.
+The output of each project is placed under `BASE_OUTDIR/PROJECT_ID/result`.
 Temporary files are placed under `BASE_TMPDIR`.
 
 Output files include:

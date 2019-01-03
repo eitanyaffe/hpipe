@@ -40,6 +40,8 @@ my $dir = dirname($cfg);
 my $fn = basename($cfg);
 print "config file: $cfg\n";
 
+my $cdir = "/links/CFG_DIR";
+
 if ($command eq "start") {
     msystem("bash ./docker/scripts/drun.sh $dir $image");
 }
@@ -55,17 +57,17 @@ if ($command eq "restart") {
 
 if ($command eq "run") {
     print "step: $step\n";
-    msystem("bash ./docker/scripts/dexec.sh $dir make c=config/$fn $step");
+    msystem("bash ./docker/scripts/dexec.sh $dir make c=$cdir/$fn $step");
 }
 
 if ($command eq "print") {
     print "name: $name\n";
-    msystem("bash ./docker/scripts/dexec.sh $dir make c=config/$fn t=print v=$name | grep '^v='");
+    msystem("bash ./docker/scripts/dexec.sh $dir make c=$cdir/$fn t=print v=$name | grep '^v='");
 }
 
 if ($command eq "dry") {
     print "step: $step\n";
-    msystem("bash ./docker/scripts/dexec.sh $dir make c=config/$fn $step -n | grep START");
+    msystem("bash ./docker/scripts/dexec.sh $dir make c=$cdir/$fn $step -n | grep START");
 }
 
 if ($command eq "debug") {

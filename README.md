@@ -1,10 +1,10 @@
 # hpipe: Microbial genome inference from Hi-C data
 
 The hpipe tool processes metagenomic Hi-C data, and infers underlying genomes. 
-The output are pairs of genome anchors and genome unions, where each *genome anchor* 
-is a collection contigs that are part of the genomes of one or more residing strains, 
-while each genome anchor has a matching *genome union*, that is the combined genomes of
-those strains.
+The output are pairs of genome anchors and genome unions. Each *genome anchor* 
+is a collection contigs that are part of the genomes of one or more residing strains.
+Each genome anchor has a matching *genome union*, that is the combined genomes of
+the anchor-related strains, including shared elements such as plasmids.
 
 The pipeline recieves as input a shotgun libary and a Hi-C library,
 and performs various initial steps including quality trimming, removal of

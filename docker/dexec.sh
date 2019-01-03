@@ -28,7 +28,7 @@ case "$(uname -s)" in
      USERPARAMS=
      ;;
    *)
-     USERPARAMS=-u ${USER} ${PERMISSIONS_PATHS}
+     USERPARAMS="-u ${USER} ${PERMISSIONS_PATHS}"
      ;;
 esac
 

@@ -52,19 +52,20 @@ path.
 
 ## Quick Start
 
-Check hpipe on a test dataset:
+To check hpipe on a test dataset run the following.
 
-1. Start an hpipe docker container.
+1. Start an hpipe docker container:
 ```
 hpipe start -c config/template/basic.cfg
 ```
 
-2. Infer anchor-union pairs. This takes ~20 minutes on an 1TB/80-core machine.
+2. Infer anchor-union pairs:
 ```
 hpipe run -c config/template/basic.cfg
 ```
+This step takes ~20 minutes on a 1TB/80-core linux machine.
 
-3. When done close the container.
+3. When done close the container:
 ```
 hpipe stop -c config/template/basic.cfg
 ```

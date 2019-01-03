@@ -1,4 +1,4 @@
-# hpipe: A tool for the analysis of metagenomic Hi-C data
+# hpipe: Microbial genome inference from Hi-C data
 
 The hpipe tool processes metagenomic Hi-C maps to infer a set of underlying
 genome anchor/union pairs. Each *genome anchor* is a collection contigs that

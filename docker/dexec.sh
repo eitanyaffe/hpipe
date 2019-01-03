@@ -28,10 +28,10 @@ case "$(uname -s)" in
      USERPARAMS=
      ;;
    *)
-     USERPARAMS="-u ${USER} ${PERMISSIONS_PATHS}"
+     USERPARAMS="-u ${USER}"
      ;;
 esac
 
-CMD="docker exec ${D_EXEC_OPTS} ${USERPARAMS} ${CONTAINER_NAME} $COMMAND"
+CMD="docker exec ${HOME_ENV} ${D_EXEC_OPTS} ${USERPARAMS} ${CONTAINER_NAME} $COMMAND"
 echo "#" ${CMD}
 ${CMD}

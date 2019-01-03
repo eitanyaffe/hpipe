@@ -18,7 +18,7 @@ PROJECT_ID=`cat ${CFG_DIR}/project_id`
 # parse docker link file
 echo "Reading volume file: $LINK_FILE"
 echo "Providing directories in docker container:"
-IO_PATHS="-v $CFG_DIR:/links/CFG_DIR"
+IO_PATHS="-v $CFG_DIR:/links/CFG_DIR -v $HOME:$HOME"
 while IFS='' read -r line || [[ -n "$line" ]]; do
     [ -z "$line" ] || [ "${line:0:1}" == "#" ] && continue
     array=($(eval echo ${line//=/ }))
@@ -36,6 +36,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
     fi
 done <${LINK_FILE}
 echo " /links/CFG_DIR ==> $CFG_DIR"
+echo " $HOME ==> $HOME"
 
 IMAGE_SHORT_NAME=hpipe
 D_START_OPTS="-ti"

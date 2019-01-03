@@ -27,7 +27,7 @@ my $command = $ARGV[0];
 my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/template/basic.cfg";
 my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
 my $name = "CONTIG_TABLE";
-my $image = "eitanyaffe/hpipe:v1.1";
+my $image = "eitanyaffe/hpipe:v1.2";
 
 $command eq "start" || $command eq "stop" || $command eq "restart" || $command eq "status" || $command eq "print" || $command eq "run" || $command eq "dry" || $command eq "debug" || die "unknown command: $command";
 
@@ -43,39 +43,39 @@ print "config file: $cfg\n";
 my $cdir = "/links/CFG_DIR";
 
 if ($command eq "start") {
-    msystem("bash ./docker/scripts/drun.sh $dir $image");
+    msystem("bash ./docker/drun.sh $dir $image");
 }
 
 if ($command eq "stop") {
-    msystem("bash ./docker/scripts/dremove.sh $dir");
+    msystem("bash ./docker/dremove.sh $dir");
 }
 
 if ($command eq "restart") {
-    msystem("bash ./docker/scripts/dremove.sh $dir");
-    msystem("bash ./docker/scripts/drun.sh $dir $image");
+    msystem("bash ./docker/dremove.sh $dir");
+    msystem("bash ./docker/drun.sh $dir $image");
 }
 
 if ($command eq "run") {
     print "step: $step\n";
-    msystem("bash ./docker/scripts/dexec.sh $dir make c=$cdir/$fn $step");
+    msystem("bash ./docker/dexec.sh $dir make c=$cdir/$fn $step");
 }
 
 if ($command eq "print") {
     print "name: $name\n";
-    msystem("bash ./docker/scripts/dexec.sh $dir make c=$cdir/$fn t=print v=$name | grep '^v='");
+    msystem("bash ./docker/dexec.sh $dir make c=$cdir/$fn t=print v=$name | grep '^v='");
 }
 
 if ($command eq "dry") {
     print "step: $step\n";
-    msystem("bash ./docker/scripts/dexec.sh $dir make c=$cdir/$fn $step -n | grep START");
+    msystem("bash ./docker/dexec.sh $dir make c=$cdir/$fn $step -n | grep START");
 }
 
 if ($command eq "debug") {
-    msystem("bash ./docker/scripts/dexec.sh $dir bash");
+    msystem("bash ./docker/dexec.sh $dir bash");
 }
 
 if ($command eq "status") {
-    msystem("bash ./docker/scripts/dstatus.sh $dir");
+    msystem("bash ./docker/dstatus.sh $dir");
 }
 
 sub msystem {

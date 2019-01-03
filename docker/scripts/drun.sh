@@ -23,7 +23,7 @@ while IFS='' read -r line || [[ -n "$line" ]]; do
     [ -z "$line" ] || [ "${line:0:1}" == "#" ] && continue
     array=($(eval echo ${line//=/ }))
     echo " /links/${array[0]} ==> ${array[1]}"
-    IO_PATHS="$IO_PATHS -v $HOME:$HOME -v ${array[1]}:/links/${array[0]}"
+    IO_PATHS="$IO_PATHS -v ${array[1]}:/links/${array[0]}"
     if [ ${array[0]} == "BASE_OUTDIR" ]; then
 	mkdir -p ${array[1]}
     fi
@@ -43,6 +43,13 @@ PERMISSIONS_PATHS="-v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow -v /etc
 CONTAINER_NAME=${IMAGE_SHORT_NAME}_${PROJECT_ID}_${USER}
 HOST=${IMAGE_SHORT_NAME}_${PROJECT_ID}
 
-CMD="docker run ${D_START_OPTS} -d -h ${HOST} -u ${USER} ${PERMISSIONS_PATHS} ${IO_PATHS} --name ${CONTAINER_NAME} ${IMAGE_NAME}"
+UNAME=`uname -s`
+if [ $UNAME == "Darwin" ]
+   USERPARAMS=-u ${USER} ${PERMISSIONS_PATHS}
+else
+   USERPARAMS=
+fi
+
+CMD="docker run ${D_START_OPTS} -d -h ${HOST} ${USERPARAMS} ${IO_PATHS} --name ${CONTAINER_NAME} ${IMAGE_NAME}"
 echo "#" ${CMD}
 ${CMD}

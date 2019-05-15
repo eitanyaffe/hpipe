@@ -190,3 +190,12 @@ pp_output_basic:
 # assembly and anchor/union pairs only
 pp_basic: pp_assembly pp_anchor_basic pp_output_basic
 
+#####################################################################################################
+# unit tests
+#####################################################################################################
+
+test_basic:
+	@$(MAKE) pp_basic c=../config/template/basic.cfg BASE_OUTDIR=`pwd`/out/basic BASE_TMPDIR=`pwd`/out/basic_tmp HPIPE_DIR=`pwd`/..
+test_skip_assembly:
+	@$(MAKE) pp_basic c=../config/template/skip_assembly.cfg BASE_OUTDIR=`pwd`/out/skip_assembly BASE_TMPDIR=`pwd`/out/skip_assembly_tmp HPIPE_DIR=`pwd`/..
+

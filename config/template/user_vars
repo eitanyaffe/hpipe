@@ -11,8 +11,8 @@
 SET_TITLE=title1
 
 # Restriction enzyme
-CUTTER_TITLE=DpnII
-CUTTER_SITE=GATC
+CUTTER_TITLE?=DpnII
+CUTTER_SITE?=GATC
 
 # remove human reads using deconseq?
 REMOVE_HUMAN=F

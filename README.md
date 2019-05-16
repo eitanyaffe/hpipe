@@ -135,3 +135,12 @@ Output files include:
 * model/fragment_length.f, model/abundance.f: correction matrices.
 * model/fragment_length.bins, model/abundance.bins: ranges of the bins.
 * model/prior: constant prior probability value.
+
+### Change Log
+
+* v1.2.3: Development version
+  * Added support to start from a user-specified assembly.
+  * Added support for multiple restrcition sites.
+
+* v1.2.2: Latest stable version
+

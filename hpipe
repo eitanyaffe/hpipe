@@ -27,7 +27,7 @@ my $command = $ARGV[0];
 my $cfg = defined($ENV{HPIPE_CONFIG}) ? $ENV{HPIPE_CONFIG} : "config/template/basic.cfg";
 my $step = defined($ENV{HPIPE_STEP}) ? $ENV{HPIPE_STEP} : "pp_basic";
 my $name = "CONTIG_TABLE";
-my $image = "eitanyaffe/hpipe:development";
+my $image = "eitanyaffe/hpipe:v1.2.3";
 
 $command eq "start" || $command eq "stop" || $command eq "restart" || $command eq "status" || $command eq "print" || $command eq "run" || $command eq "dry" || $command eq "debug" || die "unknown command: $command";
 

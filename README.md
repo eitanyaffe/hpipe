@@ -138,9 +138,9 @@ Output files include:
 
 ### Change Log
 
-* v1.2.3: Development version
-  * Added support to start from a user-specified assembly.
-  * Added support for multiple restrcition sites.
+* v1.2.6: Latest development version
+  * Added: Support to start from a user-specified assembly. See config/template/skip_assembly.cfg.
+  * Added: Support for multiple restrcition sites. See config/template/multi_sites.cfg.
 
 * v1.2.2: Latest stable version
 

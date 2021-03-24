@@ -138,7 +138,7 @@ assembly:
 
 # map paired-end reads to assembly, and compute coverage
 map_pe:
-	@$(MAKE) m=map map_all
+	@$(MAKE) m=map map_all REMOVE_TRANSIENT=F
 
 #####################################################################################################
 # contig matrix
@@ -193,3 +193,11 @@ pp_output_basic:
 # assembly and anchor/union pairs only
 pp_basic: pp_assembly pp_anchor_basic pp_output_basic
 
+
+#####################################################################################################
+# genes and checkm
+#####################################################################################################
+
+pp_genome_quality:
+	@$(MAKE) m=genes t=predict_genes
+	@$(MAKE) m=checkm t=make_checkm 

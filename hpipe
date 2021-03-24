@@ -57,7 +57,7 @@ if ($command eq "restart") {
 
 if ($command eq "run") {
     print "step: $step\n";
-    msystem("bash ./docker/dexec.sh $dir make c=$cdir/$fn $step");
+    msystem("bash ./docker/dexec.sh $dir nice make c=$cdir/$fn $step");
 }
 
 if ($command eq "print") {

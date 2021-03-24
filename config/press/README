@@ -1,0 +1,13 @@
+See https://github.com/eitanyaffe/hpipe for complete instructions.
+
+System files:
+- project_id: unique identifier of project
+- user_vars: Customize various user-defined parameters
+- path_vars: Customize input, output and external tool paths
+
+Experimental design files:
+- basic.cfg:
+  Input: Shotgun and Hi-C libraries
+- skip_assembly.cfg: 
+  Input: Assembly and Hi-C library
+

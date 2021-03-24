@@ -8,20 +8,12 @@
 ##########################################################################################
 
 # project paths
-BASE_OUTDIR=${HPIPE_DIR}/output
-BASE_TMPDIR=${HPIPE_DIR}/tmp
+BASE_OUTDIR=/relman03/work/users/eitany/hpipe/press
+BASE_TMPDIR=/relman03/work/users/eitany/hpipe/press_tmp
 
-# Option A: Assembly shotgut DNA input directory
-ASSEMBLY_INPUTDIR=${HPIPE_DIR}/datasets/n5/assembly_lib
-
-# Option B: Assembly fasta file 
-ASSEMBLY_INPUTFASTA=${HPIPE_DIR}/datasets/n5/assembly_fasta
-
-# input Hi-C files
-HIC_INPUTDIR=${HPIPE_DIR}/datasets/n5/hic_lib
-
-# optional files
+FASTQ_DIR=/relman04/data/public/Press_Liachko_2017
 
 # To use deconseq for removal of human reads it must be installed and the directory
 # must be set here. Also, set REMOVE_HUMAN to true in the user_vars file.
-# DECONSEQ_DIR=/path/to/deconseq_directory
+# DECONSEQ_DIR=/path/to/deconseq
+DECONSEQ_DIR=/relman01/shared/tools/deconseq-standalone-0.4.3

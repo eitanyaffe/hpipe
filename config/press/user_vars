@@ -7,15 +7,15 @@
 # - Paths are defined in the path_vars file.
 ##########################################################################################
 
-# export directory name
-EXPORT_LABEL=project1
-
-# Restriction enzyme
-CUTTER_TITLE?=DpnII
-CUTTER_SITE?=GATC
-
 # remove human reads using deconseq?
-REMOVE_HUMAN=F
+REMOVE_HUMAN=T
+
+REMOVE_TRANSIENT=F
+MAP_READ_LENGTH=30
+
+SICKLE_MAX_JOBS=4
+SEQPREP_MAX_JOBS=4
+DECONSEQ_MAX_JOBS=4
 
 ##########################################################################################
 # genome anchor parameters
@@ -39,16 +39,20 @@ AMAP_TRIM_COVERAGE_FACTOR=1.5
 AMAP_TRIM_COVERAGE_MAX_SD=0.2
 
 # minimal anchor size (bp)
-AMAP_MIN_LENGTH=200000
+AMAP_MIN_LENGTH=100000
 
 ##########################################################################################
 # genome union parameters
 ##########################################################################################
 
+CCLUSTER_MIN_COVERAGE=4
+CCLUSTER_MIN_LENGTH=2000
+CCLUSTER_MIN_CLUSTER_NT=100000
+
 # each contig-anchor pair must satisfy all conditions below
 
 # minimal number of supporting contig-anchor contacts
-CA_MIN_CONTACTS=8
+CA_MIN_CONTACTS=2
 
 # minimal contig-anchor contact enrichment: log10(obs/exp)
 CA_MIN_ENRICHMENT=1
@@ -57,7 +61,8 @@ CA_MIN_ENRICHMENT=1
 CA_CONTIG_COVERAGE=0.5
 
 # minimal anchor support, i.e. the number of associated contigs within anchor
-CA_MIN_ANCHOR_CONTIGS=2
+CA_MIN_ANCHOR_CONTIGS=1
 
 # false discovery probability
 CA_ASSIGN_FDR=0.000001
+
